@@ -15,6 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- Convenience property to set the GWT version -->
         <gwtVersion>2.3.0</gwtVersion>
+        <gaeVersion>1.5.1</gaeVersion>
     <!-- GWT needs at least java 1.5 -->
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>1.5</maven.compiler.target>
@@ -22,6 +23,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
@@ -35,10 +42,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.7</version>
-            <scope>test</scope>
+            <groupId>net.kindleit</groupId>
+            <artifactId>gae-runtime</artifactId>
+            <version>${gaeVersion}</version>
+            <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.appengine</groupId>
+                    <artifactId>appengine-tools-sdk</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -69,6 +82,9 @@
                     <runTarget>OnMap.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <i18nMessagesBundle>ge.lanmaster.onmap.client.Messages</i18nMessagesBundle>
+                    
+                    <appEngineVersion>${gaeVersion}</appEngineVersion>
+                    <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
                 </configuration>
             </plugin>
 
