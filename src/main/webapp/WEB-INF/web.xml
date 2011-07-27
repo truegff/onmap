@@ -6,15 +6,15 @@
 <web-app>
 
   <!-- Servlets -->
-<!--  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>ge.lanmaster.onmap.server.GreetingServiceImpl</servlet-class>
+  <servlet>
+    <servlet-name>userService</servlet-name>
+    <servlet-class>ge.lanmaster.onmap.server.MyUserServiceImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/OnMap/greet</url-pattern>
-  </servlet-mapping>-->
+    <servlet-name>userService</servlet-name>
+    <url-pattern>/OnMap/userService</url-pattern>
+  </servlet-mapping>
 
   <!-- Default page to serve -->
   <welcome-file-list>
