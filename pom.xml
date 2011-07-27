@@ -8,7 +8,7 @@
     <artifactId>onmap</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>GWT Maven Archetype</name>
+    <name>onmap-project</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -82,7 +82,7 @@
                     <runTarget>OnMap.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <i18nMessagesBundle>ge.lanmaster.onmap.client.Messages</i18nMessagesBundle>
-                    
+
                     <appEngineVersion>${gaeVersion}</appEngineVersion>
                     <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
                     <copyWebApp>true</copyWebApp>
