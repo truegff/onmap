@@ -17,9 +17,9 @@
         <gwtVersion>2.3.0</gwtVersion>
         <gxtVersion>2.2.0</gxtVersion>
         <gaeVersion>1.5.1</gaeVersion>
-    <!-- GWT needs at least java 1.5 -->
-        <maven.compiler.source>1.5</maven.compiler.source>
-        <maven.compiler.target>1.5</maven.compiler.target>
+
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     </properties>
 
@@ -59,6 +59,11 @@
             <artifactId>gxt</artifactId>
             <version>${gxtVersion}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ge.lanmaster</groupId>
+            <artifactId>gwt-ui-widgets</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
