@@ -15,6 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- Convenience property to set the GWT version -->
         <gwtVersion>2.3.0</gwtVersion>
+        <gxtVersion>2.2.0</gxtVersion>
         <gaeVersion>1.5.1</gaeVersion>
     <!-- GWT needs at least java 1.5 -->
         <maven.compiler.source>1.5</maven.compiler.source>
@@ -53,6 +54,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.extjs</groupId>
+            <artifactId>gxt</artifactId>
+            <version>${gxtVersion}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -71,10 +78,7 @@
                         <goals>
                             <goal>compile</goal>
                             <goal>test</goal>
-<<<<<<< HEAD
 <!--                            <goal>i18n</goal>-->
-=======
->>>>>>> branch2
                             <goal>generateAsync</goal>
                         </goals>
                     </execution>
@@ -84,11 +88,7 @@
                 <configuration>
                     <runTarget>OnMap.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
-<<<<<<< HEAD
 <!--                    <i18nMessagesBundle>ge.lanmaster.onmap.client.Messages</i18nMessagesBundle>-->
-
-=======
->>>>>>> branch2
                     <appEngineVersion>${gaeVersion}</appEngineVersion>
                     <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
                     <copyWebApp>true</copyWebApp>

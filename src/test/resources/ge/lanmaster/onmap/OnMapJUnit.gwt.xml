@@ -3,7 +3,4 @@
   <!-- Inherit our applications main module.                      -->
   <inherits name='ge.lanmaster.onmap.OnMap'/>
 
-  <!-- Specify the path to any remote services.                   -->
-  <servlet path="/OnMap/greet" class="ge.lanmaster.onmap.server.GreetingServiceImpl" />
-
 </module>
