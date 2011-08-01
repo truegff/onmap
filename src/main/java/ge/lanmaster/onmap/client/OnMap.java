@@ -6,6 +6,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import ge.lanmaster.gwt.ui.widgets.client.ABC;
+import ge.lanmaster.gwt.ui.widgets.client.MyExternalService;
+import ge.lanmaster.gwt.ui.widgets.client.MyExternalServiceAsync;
 
 
 /**
@@ -24,6 +26,22 @@ public class OnMap implements EntryPoint {
         ServiceDefTarget serviceDef = (ServiceDefTarget) service;
         serviceDef.setServiceEntryPoint(GWT.getModuleBaseURL()+"userService");
         service.sayHello(new AsyncCallback<String>() {
+
+            public void onFailure(Throwable caught) {
+                Window.alert("failure "+caught.getMessage());
+                //throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void onSuccess(String result) {
+                Window.alert(result);
+                //throw new UnsupportedOperationException("Not supported yet.");
+            }
+        });
+
+        MyExternalServiceAsync service2 = (MyExternalServiceAsync) GWT.create(MyExternalService.class);
+        ServiceDefTarget serviceDef2 = (ServiceDefTarget) service;
+        serviceDef2.setServiceEntryPoint(GWT.getHostPageBaseURL()+"externalService");
+        service2.sayHowdy(new AsyncCallback<String>() {
 
             public void onFailure(Throwable caught) {
                 Window.alert("failure "+caught.getMessage());

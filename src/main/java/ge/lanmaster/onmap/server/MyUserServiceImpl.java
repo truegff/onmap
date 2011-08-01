@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ge.lanmaster.onmap.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import ge.lanmaster.onmap.client.MyUserService;
-import ge.lanmaster.onmap.client.MyUserServiceAsync;
 
 /**
  *
@@ -16,7 +11,6 @@ public class MyUserServiceImpl extends RemoteServiceServlet implements MyUserSer
 
     public String sayHello() {
         return "sayHello() says hello! :)";
-
     }
 
 }
