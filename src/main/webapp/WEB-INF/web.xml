@@ -6,26 +6,7 @@
 <web-app>
 
   <!-- Servlets -->
-    <servlet>
-        <servlet-name>userService</servlet-name>
-        <servlet-class>ge.lanmaster.onmap.server.MyUserServiceImpl</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>userService</servlet-name>
-        <url-pattern>/OnMap/userService</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>externalService</servlet-name>
-        <servlet-class>ge.lanmaster.gwt.ui.widgets.server.MyExternalServiceImpl</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>externalService</servlet-name>
-        <url-pattern>/OnMap/externalService</url-pattern>
-    </servlet-mapping>
-
+   
   <!-- RemoteApi -->
 
     <servlet>
