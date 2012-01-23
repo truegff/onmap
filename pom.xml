@@ -96,6 +96,7 @@
                 <!-- Plugin configuration. There are many available options, see
             gwt-maven-plugin documentation at codehaus.org -->
                 <configuration>
+                    <extraJvmArgs>-Xms128m -Xmx256m -XX:MaxPermSize=64m</extraJvmArgs>
                     <runTarget>root.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                 </configuration>

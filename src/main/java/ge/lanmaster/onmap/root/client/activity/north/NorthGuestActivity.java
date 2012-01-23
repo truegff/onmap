@@ -10,6 +10,7 @@ import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.LoginInfo;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
+import ge.lanmaster.onmap.root.client.place.AppLoginPlace;
 import ge.lanmaster.onmap.root.client.place.north.NorthGuestPlace;
 import ge.lanmaster.onmap.root.client.services.LoginService;
 import ge.lanmaster.onmap.root.client.services.LoginServiceAsync;
@@ -43,13 +44,13 @@ public class NorthGuestActivity extends AbstractActivity implements NorthGuestVi
                 //GWT.log("");
             }
             public void onSuccess(LoginInfo result) {
-                if (!result.isLoggedIn()) {
+                if (result.isLoggedIn()) {
                     GWT.log("logged in user: " + result.getEmailAddress());
 
                     goTo(new AppClientPlace("token"));
                 } else {
                     GWT.log("user not logged in");
-
+                    goTo(new AppLoginPlace("token"));
                     //no action needed
                     //goTo(new AppGuestPlace("linklinklink"));
                 }

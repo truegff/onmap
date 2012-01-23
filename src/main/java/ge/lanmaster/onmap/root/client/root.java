@@ -68,7 +68,7 @@ public class root implements EntryPoint {
 
 
         GWT.log("       calling wireup method");
-        wireup(eventBus, clientFactory);
+        //wireup(eventBus, clientFactory);
 
         /**
          * PlaceController initiates navigation to a new Place and is responsible for warning the user before doing so.
