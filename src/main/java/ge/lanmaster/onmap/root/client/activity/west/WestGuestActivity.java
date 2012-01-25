@@ -25,7 +25,8 @@ public class WestGuestActivity extends AbstractActivity implements WestGuestView
     }
 
     public String mayStop() {
-        return "Please hold on. This activity is stopping.";
+        return null;
+        //return "Please hold on. This activity is stopping.";
     }
 
     public void goTo(Place place) {

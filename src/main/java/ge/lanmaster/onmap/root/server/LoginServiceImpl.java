@@ -6,7 +6,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.appengine.api.users.UserServiceFactory;
 
-import ge.lanmaster.onmap.root.client.LoginInfo;
+import ge.lanmaster.onmap.root.client.UserState;
 import ge.lanmaster.onmap.root.client.services.LoginService;
 
 import java.util.logging.Logger;
@@ -22,8 +22,8 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 
     private static final Logger logger = Logger.getLogger(LoginServiceImpl.class.getName());
 
-    public LoginInfo login(String requestUri) {
-        LoginInfo loginInfo = new LoginInfo();
+    public UserState login(String requestUri) {
+        UserState userState = new UserState();
         UserService userService = UserServiceFactory.getUserService();
 
         User user;
@@ -35,16 +35,16 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
         user = userService.getCurrentUser();
 
         if (user != null) {
-            loginInfo.setLoggedIn(true);
-            loginInfo.setLogoutUrl(userService.createLogoutURL(requestUri));
-            loginInfo.setNickname(user.getNickname());
-            loginInfo.setEmailAddress(user.getEmail());
+            userState.setLoggedIn(true);
+            userState.setLogoutUrl(userService.createLogoutURL(requestUri));
+            userState.setNickname(user.getNickname());
+            userState.setEmailAddress(user.getEmail());
         } else {
-            loginInfo.setLoggedIn(false);
-            loginInfo.setLoginUrl(userService.createLoginURL(requestUri));
+            userState.setLoggedIn(false);
+            userState.setLoginUrl(userService.createLoginURL(requestUri));
         }
 
-        return loginInfo;
+        return userState;
     }
 
 }

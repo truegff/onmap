@@ -2,7 +2,7 @@ package ge.lanmaster.onmap.root.client;
 
 import java.io.Serializable;
 
-public class LoginInfo implements Serializable {
+public class UserState implements Serializable {
     private boolean loggedIn = false;
     private String loginUrl;
     private String logoutUrl;

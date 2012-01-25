@@ -2,7 +2,6 @@ package ge.lanmaster.onmap.root.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
-import ge.lanmaster.onmap.root.client.LoginInfo;
 
 public class AppGuestPlace extends Place {
     private String token;

@@ -4,15 +4,10 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import ge.lanmaster.onmap.root.client.ClientFactory;
-import ge.lanmaster.onmap.root.client.activity.west.WestBlankActivity;
 import ge.lanmaster.onmap.root.client.activity.west.WestGuestActivity;
-import ge.lanmaster.onmap.root.client.activity.west.WestNoneActivity;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
-import ge.lanmaster.onmap.root.client.place.west.WestBlankPlace;
-import ge.lanmaster.onmap.root.client.place.west.WestGuestPlace;
-import ge.lanmaster.onmap.root.client.place.west.WestNonePlace;
 
-public class WestActivityMapper implements ActivityMapper{
+public class WestActivityMapper implements ActivityMapper {
 
     private Activity currentActivity;
     private ClientFactory clientFactory;

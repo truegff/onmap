@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import ge.lanmaster.onmap.root.client.place.AppLoginPlace;
+import ge.lanmaster.onmap.root.client.ClientFactory;
 
 public class NorthGuestViewImpl extends Composite implements NorthGuestView{
 
@@ -24,11 +24,14 @@ public class NorthGuestViewImpl extends Composite implements NorthGuestView{
     @UiHandler("loginLink")
     void onClickLoginLink(ClickEvent event) {
         GWT.log("Login Link clicked.");
+        
         //presenter.goTo(new AppLoginPlace("someToken"));
     }
 
     public NorthGuestViewImpl() {
         initWidget((Widget) uiBinder.createAndBindUi(this));
+
+        //GWT.log(presenter.getClientFactory().getUserStateManager().sayHello());
     }
 
     public void setName(String name) {
@@ -37,5 +40,15 @@ public class NorthGuestViewImpl extends Composite implements NorthGuestView{
 
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+
+        loginLink.setHref(presenter.getClientFactory().getUserStateManager().getUserState().getLoginUrl());
+
+        //todo: make i18n compatible
+        loginLink.setText("შესვლა");
     }
 }

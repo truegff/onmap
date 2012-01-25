@@ -8,14 +8,14 @@ package ge.lanmaster.onmap.root.client;
  * To change this template use File | Settings | File Templates.
  */
 public class LoginInfoManager {
-    private static LoginInfo loginInfo = new LoginInfo();
+    private static UserState userState = new UserState();
 
 
-    public LoginInfo getLoginInfo() {
-        return loginInfo;
+    public UserState getLoginInfo() {
+        return userState;
     }
 
-    public void setLoginInfo(LoginInfo loginInfo) {
-        LoginInfoManager.loginInfo = loginInfo;
+    public void setLoginInfo(UserState userState) {
+        LoginInfoManager.userState = userState;
     }
 }

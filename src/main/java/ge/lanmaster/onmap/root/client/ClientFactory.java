@@ -2,11 +2,12 @@ package ge.lanmaster.onmap.root.client;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
-import ge.lanmaster.onmap.root.client.ui.center.*;
-import ge.lanmaster.onmap.root.client.ui.east.*;
-import ge.lanmaster.onmap.root.client.ui.north.*;
-import ge.lanmaster.onmap.root.client.ui.south.*;
-import ge.lanmaster.onmap.root.client.ui.west.*;
+import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
+import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
+import ge.lanmaster.onmap.root.client.ui.north.NorthClientView;
+import ge.lanmaster.onmap.root.client.ui.north.NorthGuestView;
+import ge.lanmaster.onmap.root.client.ui.south.SouthGuestView;
+import ge.lanmaster.onmap.root.client.ui.west.WestGuestView;
 /**
  * Client factory interface.
  *
@@ -26,33 +27,19 @@ public interface ClientFactory {
      * @return
      */
     PlaceController getAppPlaceController();
-//    PlaceController getWestPlaceController();
-//    PlaceController getCenterPlaceController();
-//    PlaceController getEastPlaceController();
-//    PlaceController getSouthPlaceController();
 
-//    HelloView getHelloView();
-//    GoodbyeView getGoodbyeView();
-
-    CenterBlankView getCenterBlankView();
     CenterGuestView getCenterGuestView();
 
-    NorthNoneView getNorthNoneView();
-    NorthBlankView getNorthBlankView();
     NorthGuestView getNorthGuestView();
     NorthClientView getNorthClientView();
 
-    SouthNoneView getSouthNoneView();
     SouthGuestView getSouthGuestView();
-    SouthBlankView getSouthBlankView();
 
-    WestNoneView getWestNoneView();
-    WestBlankView getWestBlankView();
     WestGuestView getWestGuestView();
 
-    EastNoneView getEastNoneView();
-    EastBlankView getEastBlankView();
     EastGuestView getEastGuestView();
 
     LoginInfoManager getLoginInfoManager();
+
+    UserStateManager getUserStateManager();
 }

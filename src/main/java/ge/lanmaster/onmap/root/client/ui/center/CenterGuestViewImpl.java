@@ -36,8 +36,6 @@ public class CenterGuestViewImpl extends Composite implements CenterGuestView {
 
         Maps.loadMapsApi("", "2", false, new Runnable() {
             public void run() {
-                Window.alert("Maps loaded");
-
                 //todo: get default users location by here as variable latLng;
 
                 //GWT.log(" ");

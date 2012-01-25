@@ -29,6 +29,7 @@ public class CenterGuestActivity  extends AbstractActivity implements CenterGues
     }
 
     public String mayStop() {
-        return "Please hold on. This activity is stopping.";
+        return null;
+        //return "Please hold on. This activity is stopping.";
     }
 }

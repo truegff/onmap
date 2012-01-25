@@ -2,10 +2,9 @@ package ge.lanmaster.onmap.root.client.mvp;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
-import ge.lanmaster.onmap.root.client.place.north.NorthBlankPlace;
-import ge.lanmaster.onmap.root.client.place.north.NorthGuestPlace;
-import ge.lanmaster.onmap.root.client.place.north.NorthNonePlace;
+import ge.lanmaster.onmap.root.client.place.AppClientPlace;
+import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 
-@WithTokenizers({NorthBlankPlace.Tokenizer.class, NorthGuestPlace.Tokenizer.class, NorthNonePlace.Tokenizer.class})
-public interface AppPlaceHistoryMapper extends PlaceHistoryMapper{
+@WithTokenizers({AppClientPlace.Tokenizer.class, AppGuestPlace.Tokenizer.class})
+public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

@@ -1,7 +1,7 @@
 package ge.lanmaster.onmap.root.client.services;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import ge.lanmaster.onmap.root.client.LoginInfo;
+import ge.lanmaster.onmap.root.client.UserState;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,5 +11,5 @@ import ge.lanmaster.onmap.root.client.LoginInfo;
  * To change this template use File | Settings | File Templates.
  */
 public interface LoginServiceAsync {
-    void login(String requestUri, AsyncCallback<LoginInfo> async);
+    void login(String requestUri, AsyncCallback<UserState> async);
 }

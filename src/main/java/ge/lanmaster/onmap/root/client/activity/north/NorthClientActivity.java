@@ -25,10 +25,14 @@ public class NorthClientActivity extends AbstractActivity implements NorthClient
     }
 
     public String mayStop() {
-        return "Please hold on. This activity is stopping.";
+        return null;
     }
 
     public void goTo(Place place) {
         clientFactory.getAppPlaceController().goTo(place);
+    }
+
+    public ClientFactory getClientFactory() {
+        return clientFactory;
     }
 }
