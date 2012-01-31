@@ -12,7 +12,7 @@ public class Visit implements IsSerializable {
     private Long id;
     private Date date;
     private String ip;
-    private String userId;
+    private String email;
     private Boolean loggedIn;
     private Boolean admin;
 
@@ -41,15 +41,15 @@ public class Visit implements IsSerializable {
 
     /**
      * Visit constructor.
-     * @param userId
+     * @param email
      * @param ip
      * @param loggedIn
      * @param admin
      * @param date
      */
-    public Visit(String userId, String ip, Boolean loggedIn, Boolean admin, Date date)
+    public Visit(String email, String ip, Boolean loggedIn, Boolean admin, Date date)
     {
-        this.userId = userId;
+        this.email = email;
         this.ip = ip;
         this.loggedIn = loggedIn;
         this.admin = admin;
@@ -72,11 +72,11 @@ public class Visit implements IsSerializable {
         this.ip = ip;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

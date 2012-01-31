@@ -14,7 +14,7 @@ public class VisitorLogger{
     }
                                          
     public void log(Visit visit) {
-        DAO dao = new DAO<Visit>(Visit.class);
+        DAO<Visit> dao = new DAO<Visit>(Visit.class);
         dao.put(visit);
     }
 
