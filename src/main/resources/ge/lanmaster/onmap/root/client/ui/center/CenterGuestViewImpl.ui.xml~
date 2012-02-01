@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:style>
+        .mapStyle {
+            height: 100%;
+            width: 100%;
+        }
+        .eastPanel {
+            background-color: #F60;
+        }
+        .westPanel {
+            background-color: #EEE;
+        }
+        .northPanel {
+            background-color: #39F;
+            border-color: blue;
+            border-width: 5px;
+        }
+        .southPanel {
+            background-color: #99C;
+        }
+        .centerPanel {
+            background-color: #FFC;
+            border-color: orange;
+            border-width: 5px;
+        }
+    </ui:style>
+
+        <g:DockLayoutPanel unit="PX">
+            <g:north size="30">
+                <g:FlowPanel addStyleNames="{style.northPanel}">
+                    <g:Label>CenterPanel</g:Label>
+                </g:FlowPanel>
+            </g:north>
+            <g:center>
+                <g:FlowPanel addStyleNames="{style.centerPanel}">
+                    <g:Label>CenterPanel</g:Label>
+                </g:FlowPanel>
+                <!--<div style="height: 100%; width: 100%">-->
+                <!--<g:HTMLPanel ui:field="map" addStyleNames="{style.mapStyle}">-->
+
+                <!--</g:HTMLPanel>-->
+                <!--</div>-->
+            </g:center>
+        </g:DockLayoutPanel>
+
+</ui:UiBinder>

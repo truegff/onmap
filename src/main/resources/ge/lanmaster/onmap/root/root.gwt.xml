@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module rename-to='onmap'>
+<module rename-to='root'>
     <!-- Inherit the core Web Toolkit stuff.                        -->
     <inherits name="com.google.gwt.user.User"/>
 

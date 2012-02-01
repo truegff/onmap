@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+        NorthGuestViewImpl
+        <g:HTMLPanel>
+            <g:Anchor ui:field="loginLink" text="Log In"></g:Anchor>
+        </g:HTMLPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>
