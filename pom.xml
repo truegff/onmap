@@ -16,7 +16,7 @@
         <!-- Convenience property to set the GWT version -->
         <gwt.version>2.4.0</gwt.version>
         <!--<gxt.version>2.1.1</gxt.version>-->
-        <gae.version>1.5.5</gae.version>
+        <gae.version>1.6.1</gae.version>
         <gae.home>
             ${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}
         </gae.home>
