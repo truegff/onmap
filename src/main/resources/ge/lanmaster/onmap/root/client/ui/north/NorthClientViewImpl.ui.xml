@@ -1,0 +1,12 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+        NorthLoginViewImpl
+        <g:HTMLPanel>
+            <g:Label ui:field="welcomeLabel"></g:Label>
+            <g:Label ui:field="userName"></g:Label>
+            <br></br>
+            <g:Anchor ui:field="logoutLink">Log out</g:Anchor>
+        </g:HTMLPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>
