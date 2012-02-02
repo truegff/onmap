@@ -5,7 +5,6 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import ge.lanmaster.onmap.root.client.services.LoginService;
 import ge.lanmaster.onmap.root.client.services.LoginServiceAsync;
-import ge.lanmaster.onmap.root.client.exception.UserStateException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,7 +17,7 @@ public class UserStateManager {
     ClientFactory clientFactory;
     private UserState userState;
     private boolean isBusy = false;
-    private UserStateException caughtException = null;
+
 
     public UserStateManager() {
         userState = new UserState();
@@ -50,9 +49,5 @@ public class UserStateManager {
 
     public boolean isBusy() {
         return isBusy;
-    }
-
-    public UserStateException getCaughtException() {
-        return caughtException;
     }
 }

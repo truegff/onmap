@@ -9,9 +9,7 @@ import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,8 +18,7 @@ public class CenterGuestViewImpl extends Composite implements CenterGuestView {
     private static CenterGuestViewImplUiBinder uiBinder = GWT.create(CenterGuestViewImplUiBinder.class);
 
 
-    interface CenterGuestViewImplUiBinder extends UiBinder<Widget, CenterGuestViewImpl> {
-    }
+    interface CenterGuestViewImplUiBinder extends UiBinder<Widget, CenterGuestViewImpl> {}
 
     private Presenter presenter;
     private String name;

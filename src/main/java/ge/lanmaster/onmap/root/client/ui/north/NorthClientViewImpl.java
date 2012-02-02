@@ -49,10 +49,8 @@ public class NorthClientViewImpl extends Composite implements NorthClientView {
         userName.setText(presenter.getClientFactory().getUserStateManager().getUserState().getNickname());
         logoutLink.setHref(presenter.getClientFactory().getUserStateManager().getUserState().getLogoutUrl());
 
-
         //todo: has to be made i18n compatible
         welcomeLabel.setText("მოგესალმებით, ");
         logoutLink.setText("გასვლა");
-
     }
 }

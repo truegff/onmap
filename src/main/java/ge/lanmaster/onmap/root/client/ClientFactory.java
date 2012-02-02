@@ -1,6 +1,5 @@
 package ge.lanmaster.onmap.root.client;
 
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
 import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
@@ -20,7 +19,7 @@ public interface ClientFactory {
      *
      * @return EventBus
      */
-    EventBus getEventBus();
+    com.google.web.bindery.event.shared.EventBus getEventBus();
 
     /**
      * PlaceController
@@ -38,8 +37,6 @@ public interface ClientFactory {
     WestGuestView getWestGuestView();
 
     EastGuestView getEastGuestView();
-
-    LoginInfoManager getLoginInfoManager();
 
     UserStateManager getUserStateManager();
 }

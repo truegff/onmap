@@ -1,14 +1,21 @@
 package ge.lanmaster.onmap.root.client;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
-import ge.lanmaster.onmap.root.client.ui.center.*;
-import ge.lanmaster.onmap.root.client.ui.east.*;
-import ge.lanmaster.onmap.root.client.ui.north.*;
-import ge.lanmaster.onmap.root.client.ui.south.*;
-import ge.lanmaster.onmap.root.client.ui.west.*;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.SimpleEventBus;
+import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
+import ge.lanmaster.onmap.root.client.ui.center.CenterGuestViewImpl;
+import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
+import ge.lanmaster.onmap.root.client.ui.east.EastGuestViewImpl;
+import ge.lanmaster.onmap.root.client.ui.north.NorthClientView;
+import ge.lanmaster.onmap.root.client.ui.north.NorthClientViewImpl;
+import ge.lanmaster.onmap.root.client.ui.north.NorthGuestView;
+import ge.lanmaster.onmap.root.client.ui.north.NorthGuestViewImpl;
+import ge.lanmaster.onmap.root.client.ui.south.SouthGuestView;
+import ge.lanmaster.onmap.root.client.ui.south.SouthGuestViewImpl;
+import ge.lanmaster.onmap.root.client.ui.west.WestGuestView;
+import ge.lanmaster.onmap.root.client.ui.west.WestGuestViewImpl;
 
 public class ClientFactoryImpl implements ClientFactory {
 
@@ -21,7 +28,6 @@ public class ClientFactoryImpl implements ClientFactory {
     private final SouthGuestView southGuestView = new SouthGuestViewImpl();
     private final WestGuestView westGuestView = new WestGuestViewImpl();
     private final EastGuestView eastGuestView = new EastGuestViewImpl();
-    private LoginInfoManager loginInfoManager;
 
     private UserStateManager userStateManager = new UserStateManager();
 
@@ -62,10 +68,6 @@ public class ClientFactoryImpl implements ClientFactory {
     //----------------EAST VIEWS-----------------//
     public EastGuestView getEastGuestView() {
         return eastGuestView;
-    }
-
-    public LoginInfoManager getLoginInfoManager() {
-        return loginInfoManager;
     }
 
     public UserStateManager getUserStateManager() {

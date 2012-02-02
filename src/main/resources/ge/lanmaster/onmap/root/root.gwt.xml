@@ -23,7 +23,7 @@
     <!--<inherits name="ge.lanmaster.onmap.demo1.Demo1" />-->
 
 
-    <set-property name="user.agent" value="gecko1_8"/>
+    <set-property name="user.agent" value="safari"/>
 
     <!-- Use ClientFactoryImpl by default -->
     <replace-with class="ge.lanmaster.onmap.root.client.ClientFactoryImpl">

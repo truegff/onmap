@@ -3,6 +3,7 @@ package ge.lanmaster.onmap.root.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import ge.lanmaster.onmap.root.client.entity.Car;
 import ge.lanmaster.onmap.root.client.services.ObjectifyTestService;
 import ge.lanmaster.onmap.root.client.services.ObjectifyTestServiceAsync;
 

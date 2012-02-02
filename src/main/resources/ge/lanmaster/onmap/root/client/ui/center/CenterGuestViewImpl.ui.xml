@@ -33,7 +33,7 @@
         <g:DockLayoutPanel addStyleNames="{style.fullSize}">
             <g:north size="30">
                 <g:FlowPanel addStyleNames="{style.northPanel}">
-                    <g:Label>CenterPanel</g:Label>
+
                 </g:FlowPanel>
             </g:north>
             <g:center>

@@ -3,7 +3,7 @@ package ge.lanmaster.onmap.root.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
-import ge.lanmaster.onmap.root.client.Car;
+import ge.lanmaster.onmap.root.client.entity.Car;
 import ge.lanmaster.onmap.root.client.services.ObjectifyTestService;
 
 /**

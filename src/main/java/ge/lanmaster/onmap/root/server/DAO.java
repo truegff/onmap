@@ -4,7 +4,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
-import ge.lanmaster.onmap.root.client.Car;
+import ge.lanmaster.onmap.root.client.entity.Car;
 import ge.lanmaster.onmap.root.client.entity.Visit;
 
 /**

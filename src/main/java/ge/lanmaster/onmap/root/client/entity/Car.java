@@ -1,4 +1,4 @@
-package ge.lanmaster.onmap.root.client;
+package ge.lanmaster.onmap.root.client.entity;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.googlecode.objectify.annotation.Entity;

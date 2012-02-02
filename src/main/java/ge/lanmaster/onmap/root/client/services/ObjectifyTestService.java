@@ -2,7 +2,7 @@ package ge.lanmaster.onmap.root.client.services;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import ge.lanmaster.onmap.root.client.Car;
+import ge.lanmaster.onmap.root.client.entity.Car;
 
 /**
  * Created by IntelliJ IDEA.

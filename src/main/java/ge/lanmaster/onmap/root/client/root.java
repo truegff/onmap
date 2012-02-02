@@ -2,25 +2,20 @@ package ge.lanmaster.onmap.root.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
-import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
+import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.mvp.*;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
-import ge.lanmaster.onmap.root.client.services.LoginService;
-import ge.lanmaster.onmap.root.client.services.LoginServiceAsync;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
