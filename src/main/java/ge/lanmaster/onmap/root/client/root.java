@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.web.bindery.event.shared.EventBus;
+import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.*;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
@@ -33,9 +34,10 @@ public class root implements EntryPoint {
     private SplitLayoutPanel appWidget = new SplitLayoutPanel();
 
 
-
     /**
      * The first method that is run in the very beginning of the program lifecycle.
+     *
+     * @param clientFactory - ClientFactory instance
      */
     public void onModuleLoad_after_auth(ClientFactory clientFactory) {
         if (clientFactory.getUserStateManager().getUserState().isLoggedIn()) {
@@ -55,7 +57,7 @@ public class root implements EntryPoint {
 //         * @see <link>http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html</link>
 //         */
         GWT.log("   creating clientFactory instance");
-        
+
 //        /**
 //         * EventBus is needed to route events between different widgets.
 //         * EventBus is one for all, used by all widgets in an application.
@@ -163,7 +165,7 @@ public class root implements EntryPoint {
 //         */
         GWT.log("       registering default places for appropriate history handlers");
         appHistoryHandler.register(appPlaceController, eventBus, appDefaultPlace);
-        
+
         //adding app's main container to the pages body
         GWT.log("           adding app's main container to the page's body");
         RootLayoutPanel.get().add(appWidget);
@@ -179,16 +181,17 @@ public class root implements EntryPoint {
         final ClientFactory clientFactory = GWT.create(ClientFactory.class);
         UserStateManager usm = clientFactory.getUserStateManager();
         usm.refReshUserState(new Command() {
-            public void execute() {
-                //onFailure
-                onModuleLoad_auth_error(clientFactory);
-            }
-        }, new Command() {
+                    public void execute() {
+                        //onFailure
+                        onModuleLoad_auth_error(clientFactory);
+                    }
+                }, new Command() {
             public void execute() {
                 //onSuccess
                 onModuleLoad_after_auth(clientFactory);
             }
-        });
+        }
+        );
     }
 
     private void onModuleLoad_auth_error(ClientFactory clientFactory) {

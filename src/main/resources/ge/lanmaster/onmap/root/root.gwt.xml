@@ -19,7 +19,7 @@
     <inherits name="com.google.gwt.place.Place"/>
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.google.gwt.maps.GoogleMaps"/>
-    <inherits name="com.googlecode.objectify.Objectify" />
+    <inherits name="com.googlecode.objectify.Objectify"/>
     <!--<inherits name="ge.lanmaster.onmap.demo1.Demo1" />-->
 
 
@@ -38,6 +38,6 @@
     <source path='shared'/>
 
 
-    <servlet path="/login" class="ge.lanmaster.onmap.root.server.LoginServiceImpl"/>
+    <servlet path="/login" class="ge.lanmaster.onmap.root.server.service.LoginServiceImpl"/>
 
 </module>
