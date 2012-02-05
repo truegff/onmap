@@ -13,7 +13,6 @@ public class WestActivityMapper implements ActivityMapper {
     private ClientFactory clientFactory;
 
     public WestActivityMapper(ClientFactory clientFactory) {
-        super();
         this.clientFactory = clientFactory;
     }
 
