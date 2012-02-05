@@ -6,7 +6,7 @@
 <web-app>
     <servlet>
         <servlet-name>ge.lanmaster.onmap.root.root login</servlet-name>
-        <servlet-class>ge.lanmaster.onmap.root.server.LoginServiceImpl</servlet-class>
+        <servlet-class>ge.lanmaster.onmap.root.server.service.LoginServiceImpl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ge.lanmaster.onmap.root.root login</servlet-name>
