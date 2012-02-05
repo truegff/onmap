@@ -4,7 +4,9 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import ge.lanmaster.onmap.root.client.ClientFactory;
+import ge.lanmaster.onmap.root.client.activity.center.CenterClientActivity;
 import ge.lanmaster.onmap.root.client.activity.center.CenterGuestActivity;
+import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 
 public class CenterActivityMapper implements ActivityMapper {
@@ -13,13 +15,15 @@ public class CenterActivityMapper implements ActivityMapper {
     private ClientFactory clientFactory;
 
     public CenterActivityMapper(ClientFactory clientFactory) {
-        super();
         this.clientFactory = clientFactory;
     }
 
     public Activity getActivity(Place place) {
         if (place instanceof AppGuestPlace) {
             currentActivity = new CenterGuestActivity(clientFactory, ((AppGuestPlace) place).getToken());
+            return currentActivity;
+        } else if (place instanceof AppClientPlace) {
+            currentActivity = new CenterClientActivity(clientFactory, ((AppClientPlace) place).getToken());
             return currentActivity;
         }
 //        else if (place instanceof CenterGuestPlace) {

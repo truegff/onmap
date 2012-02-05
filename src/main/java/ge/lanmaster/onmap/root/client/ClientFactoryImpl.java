@@ -1,9 +1,12 @@
 package ge.lanmaster.onmap.root.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import ge.lanmaster.onmap.root.client.manager.MapConfigManager;
+import ge.lanmaster.onmap.root.client.manager.UserStateManager;
+import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
+import ge.lanmaster.onmap.root.client.ui.center.CenterClientViewImpl;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestViewImpl;
 import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
@@ -22,16 +25,19 @@ public class ClientFactoryImpl implements ClientFactory {
     //----------VARIABLE DECLARATIONS--------------//
     private final EventBus eventBus = new SimpleEventBus();
     private final PlaceController appPlaceController = new PlaceController(eventBus);
-    private final CenterGuestView centerGuestView = new CenterGuestViewImpl();
-    private final NorthGuestView northGuestView = new NorthGuestViewImpl();
-    private final NorthClientView northClientView = new NorthClientViewImpl();
-    private final SouthGuestView southGuestView = new SouthGuestViewImpl();
-    private final WestGuestView westGuestView = new WestGuestViewImpl();
-    private final EastGuestView eastGuestView = new EastGuestViewImpl();
 
-    private UserStateManager userStateManager = new UserStateManager();
+    private CenterGuestView centerGuestView;
+    private CenterClientView centerClientView;
+    private NorthGuestView northGuestView;
+    private NorthClientView northClientView;
+    private SouthGuestView southGuestView;
+    private WestGuestView westGuestView;
+    private EastGuestView eastGuestView;
 
-    //--------------EVENT BUSES--------------------//
+    private UserStateManager userStateManager;
+    private MapConfigManager mapConfigManager;
+
+    //--------------EVENT BUS----------------------//
     public EventBus getEventBus() {
         return eventBus;
     }
@@ -43,42 +49,62 @@ public class ClientFactoryImpl implements ClientFactory {
 
     //----------------CENTER VIEWS-----------------//
     public CenterGuestView getCenterGuestView() {
+        if (centerGuestView == null)
+            centerGuestView = new CenterGuestViewImpl();
         return centerGuestView;
+    }
+
+    public CenterClientView getCenterClientView() {
+        if (centerClientView == null)
+            centerClientView = new CenterClientViewImpl();
+        return centerClientView;
     }
 
     //----------------NORTH VIEWS-----------------//
     public NorthGuestView getNorthGuestView() {
+        if (northGuestView == null)
+            northGuestView = new NorthGuestViewImpl();
         return northGuestView;
     }
 
     public NorthClientView getNorthClientView() {
+        if (northClientView == null)
+            northClientView = new NorthClientViewImpl();
         return northClientView;
     }
 
     //----------------SOUTH VIEWS-----------------//
     public SouthGuestView getSouthGuestView() {
+        if (southGuestView == null)
+            southGuestView = new SouthGuestViewImpl();
         return southGuestView;
     }
 
     //----------------WEST VIEWS-----------------//
     public WestGuestView getWestGuestView() {
+        if (westGuestView == null)
+            westGuestView = new WestGuestViewImpl();
         return westGuestView;
     }
 
     //----------------EAST VIEWS-----------------//
     public EastGuestView getEastGuestView() {
+        if (eastGuestView == null)
+            eastGuestView = new EastGuestViewImpl();
         return eastGuestView;
     }
 
+    //----------------MANAGERS------------------//
     public UserStateManager getUserStateManager() {
+        if (userStateManager == null)
+            userStateManager = new UserStateManager();
         return userStateManager;
     }
 
-    public static class App {
-        private static final ClientFactory ourInstance = GWT.create(ClientFactory.class);
-
-        public static ClientFactory getInstance() {
-            return ourInstance;
-        }
+    public MapConfigManager getMapConfigManager() {
+        if (mapConfigManager == null)
+            mapConfigManager = new MapConfigManager();
+        return mapConfigManager;
     }
+
 }
