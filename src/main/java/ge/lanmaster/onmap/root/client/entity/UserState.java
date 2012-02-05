@@ -1,4 +1,4 @@
-package ge.lanmaster.onmap.root.client;
+package ge.lanmaster.onmap.root.client.entity;
 
 import java.io.Serializable;
 

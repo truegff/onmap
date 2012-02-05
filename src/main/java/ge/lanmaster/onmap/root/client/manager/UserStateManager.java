@@ -1,8 +1,10 @@
-package ge.lanmaster.onmap.root.client;
+package ge.lanmaster.onmap.root.client.manager;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import ge.lanmaster.onmap.root.client.ClientFactory;
+import ge.lanmaster.onmap.root.client.entity.UserState;
 import ge.lanmaster.onmap.root.client.services.LoginService;
 import ge.lanmaster.onmap.root.client.services.LoginServiceAsync;
 
@@ -28,10 +30,11 @@ public class UserStateManager {
         LoginServiceAsync loginService = GWT.create(LoginService.class);
         GWT.log("GWT.getHostPageBaseURL() = " + GWT.getHostPageBaseURL());
         try {
-            loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<UserState>()  {
+            loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<UserState>() {
                 public void onFailure(Throwable caught) {
                     failureCase.execute();
                 }
+
                 public void onSuccess(UserState result) {
                     userState = result;
                     successCase.execute();
