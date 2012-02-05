@@ -1,4 +1,4 @@
-package ge.lanmaster.onmap.root.server;
+package ge.lanmaster.onmap.root.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Objectify;

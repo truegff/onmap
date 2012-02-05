@@ -1,28 +1,20 @@
-package ge.lanmaster.onmap.root.server;
+package ge.lanmaster.onmap.root.server.service;
 
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.appengine.api.users.UserServiceFactory;
-
-import ge.lanmaster.onmap.root.client.UserState;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import ge.lanmaster.onmap.root.client.entity.UserState;
 import ge.lanmaster.onmap.root.client.entity.Visit;
 import ge.lanmaster.onmap.root.client.services.LoginService;
+import ge.lanmaster.onmap.root.server.manager.VisitorLogger;
 
 import java.util.Date;
-import java.util.logging.Logger;
 
-/**
- * Created by IntelliJ IDEA.
- * User: alexander
- * Date: 1/8/12
- * Time: 9:24 PM
- * To change this template use File | Settings | File Templates.
- */
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
 
-    private static final Logger logger = Logger.getLogger(LoginServiceImpl.class.getName());
+//    private static final Logger logger = Logger.getLogger(LoginServiceImpl.class.getName());
 
     public UserState login(String requestUri) {
         final String ip = getThreadLocalRequest().getRemoteAddr();

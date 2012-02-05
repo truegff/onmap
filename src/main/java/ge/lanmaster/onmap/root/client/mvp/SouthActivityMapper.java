@@ -13,7 +13,6 @@ public class SouthActivityMapper implements ActivityMapper {
     private ClientFactory clientFactory;
 
     public SouthActivityMapper(ClientFactory clientFactory) {
-        super();
         this.clientFactory = clientFactory;
     }
 
