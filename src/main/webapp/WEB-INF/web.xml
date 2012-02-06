@@ -4,16 +4,21 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-    <servlet>
-        <servlet-name>ge.lanmaster.onmap.root.root login</servlet-name>
-        <servlet-class>ge.lanmaster.onmap.root.server.service.LoginServiceImpl</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ge.lanmaster.onmap.root.root login</servlet-name>
-        <url-pattern>/root/login</url-pattern>
-    </servlet-mapping>
+    <!-- Display name, what is it for? -->
+    <display-name>onmap</display-name>
 
-    <!-- Servlets -->
+    <!-- Filters -->
+    <filter>
+        <filter-name>myGuiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myGuiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>ge.lanmaster.onmap.root.server.guice.ContextListener</listener-class>
+    </listener>
 
     <!-- Default page to serve -->
     <welcome-file-list>
