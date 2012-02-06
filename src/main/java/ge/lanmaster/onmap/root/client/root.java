@@ -33,7 +33,6 @@ public class root implements EntryPoint {
     Place appDefaultPlace = null;
     private SplitLayoutPanel appWidget = new SplitLayoutPanel();
 
-
     /**
      * The first method that is run in the very beginning of the program lifecycle.
      *
