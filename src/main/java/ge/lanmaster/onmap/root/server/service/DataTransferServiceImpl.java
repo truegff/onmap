@@ -1,17 +1,27 @@
 package ge.lanmaster.onmap.root.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.inject.Inject;
+import ge.lanmaster.onmap.root.client.entity.MapConfig;
 import ge.lanmaster.onmap.root.client.services.DataTransferService;
+import ge.lanmaster.onmap.root.server.ServerFactory;
 
-/**
- * Created by IntelliJ IDEA.
- * User: alexander
- * Date: 2/3/12
- * Time: 5:30 AM
- * To change this template use File | Settings | File Templates.
- */
 public class DataTransferServiceImpl extends RemoteServiceServlet implements DataTransferService {
-//    public MapConfig getMapConfig() {
-//        return null;  //To change body of implemented methods use File | Settings | File Templates.
-//    }
+
+    private ServerFactory factory;
+
+    @Inject
+    public DataTransferServiceImpl(ServerFactory factory) {
+        this.factory = factory;
+    }
+
+    public MapConfig getMapConfig() {
+        MapConfig mapConfig = null;
+        if (factory.getUserService().isUserLoggedIn()) {
+            //try to get users mapconfig
+        } else {
+            //assign default one
+        }
+        return mapConfig;
+    }
 }
