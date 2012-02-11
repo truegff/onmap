@@ -3,37 +3,43 @@ package ge.lanmaster.onmap.root.server.service;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.inject.Inject;
 import ge.lanmaster.onmap.root.client.entity.UserState;
 import ge.lanmaster.onmap.root.client.entity.Visit;
 import ge.lanmaster.onmap.root.client.services.LoginService;
-import ge.lanmaster.onmap.root.server.manager.VisitorLogger;
+import ge.lanmaster.onmap.root.server.ServerFactory;
 
 import java.util.Date;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
 
-//    private static final Logger logger = Logger.getLogger(LoginServiceImpl.class.getName());
+    private ServerFactory factory;
+
+    @Inject
+    public LoginServiceImpl(ServerFactory factory) {
+        this.factory = factory;
+    }
+
+    //    private static final Logger logger = Logger.getLogger(LoginServiceImpl.class.getName());
 
     public UserState login(String requestUri) {
         final String ip = getThreadLocalRequest().getRemoteAddr();
 
 
         UserState userState = new UserState();
-        UserService userService = UserServiceFactory.getUserService();
+        UserService userService = factory.getUserService();
 
         User user;
 
         //logger.info("Going to execute userService.getCurrentUser()");
-        //logger.info(userService.toString());
+//        logger.info(userService.toString());
         //logger.info("userService.isUserLoggedIn() = "+userService.isUserLoggedIn());
         user = userService.getCurrentUser();
 
         // log part
-        VisitorLogger visitorLogger = new VisitorLogger();
         Visit v;
-        // log part
+
 
         if (user != null) {
             userState.setLoggedIn(true);
@@ -52,7 +58,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
         }
 
         // log part
-        visitorLogger.log(v);
+        factory.getVisitorLogger().log(v);
 
         return userState;
     }

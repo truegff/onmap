@@ -8,7 +8,7 @@ public class GuiceFactory {
 
     public static Injector getInjector() {
         if (injector == null)
-            injector = Guice.createInjector(new ServletTuningModule());
+            injector = Guice.createInjector(new ServletBindingModule(), new ServerModule());
         return injector;
     }
 }

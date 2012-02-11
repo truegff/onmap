@@ -4,7 +4,7 @@ import com.google.inject.Scopes;
 import com.google.inject.servlet.ServletModule;
 import ge.lanmaster.onmap.root.server.service.LoginServiceImpl;
 
-public class ServletTuningModule extends ServletModule {
+public class ServletBindingModule extends ServletModule {
     @Override
     protected void configureServlets() {
         bind(LoginServiceImpl.class).in(Scopes.SINGLETON);
