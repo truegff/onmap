@@ -29,8 +29,15 @@ public class UserStateManager {
         isBusy = true;
         LoginServiceAsync loginService = GWT.create(LoginService.class);
         GWT.log("GWT.getHostPageBaseURL() = " + GWT.getHostPageBaseURL());
+
+        // for local debug purposes
+        // todo: remove before deployment
+        String url = GWT.getHostPageBaseURL();
+        if (url.equalsIgnoreCase("http://127.0.0.1:8888/")) {url = url+"root.html?gwt.codesvr=127.0.0.1:9997"; }
+        // for local debug purposes
+
         try {
-            loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<UserState>() {
+            loginService.login(url, new AsyncCallback<UserState>() {
                 public void onFailure(Throwable caught) {
                     failureCase.execute();
                 }

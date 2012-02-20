@@ -8,6 +8,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -197,6 +198,7 @@ public class root implements EntryPoint {
         HTML message = new HTML("<div style=\"position:absolute; top:10px; left:10px;\">" +
                 "გთხოვთ გვესტუმროთ მოგვიანებით." +
                 "</div>");
+
         RootLayoutPanel.get().add(message);
     }
 }
