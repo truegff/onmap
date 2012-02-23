@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.web.bindery.event.shared.EventBus;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.*;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
@@ -26,6 +27,7 @@ import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
  * @version 0.1-alpha
  */
 public class root implements EntryPoint {
+    private final GinFactory injector = GWT.create(GinFactory.class);
     /**
      * Main container in the app.
      *
