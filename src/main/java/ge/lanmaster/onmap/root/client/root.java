@@ -8,12 +8,15 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
+import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
+import ge.lanmaster.onmap.root.client.gin.NorthActivityManagerFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.*;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
@@ -39,8 +42,31 @@ public class root implements EntryPoint {
      * The first method that is run in the very beginning of the program lifecycle.
      */
 
+
+
+    public void onModuleLoad() {
+        //UserStateManager usm = injector.getClientFactory().getUserStateManager();
+        UserStateManager usm = injector.getUserStateManager();
+
+        //if (usm.equals(injector.getUserStateManager())) Window.alert("EQUAAALS!"); else Window.alert("NOTEQUAALS!");
+
+        usm.refReshUserState(new Command() {
+                    public void execute() {
+                        //onFailure
+                        onModuleLoad_auth_error();
+                    }
+                }, new Command() {
+            public void execute() {
+                //onSuccess
+                onModuleLoad_after_auth();
+            }
+        }
+        );
+    }
+
+
     public void onModuleLoad_after_auth() {
-        if (injector.getClientFactory().getUserStateManager().getUserState().isLoggedIn()) {
+        if (injector.getUserStateManager().getUserState().isLoggedIn()) {
             appDefaultPlace = new AppClientPlace("");
         } else {
             appDefaultPlace = new AppGuestPlace("");
@@ -49,7 +75,9 @@ public class root implements EntryPoint {
 
         GWT.log("root --- onModuleLoad --- entering method");
 
+        //getting event bus
         EventBus eventBus = injector.getClientFactory().getEventBus();
+
         //EventBus eventBus = (SimpleEventBus) injector.getMainEventBus();
 
 
@@ -74,8 +102,8 @@ public class root implements EntryPoint {
 //         */
         GWT.log("               instantiating ***ActivityMapper && ***ActivityManager");
         // for north
-        ActivityMapper northActivityMapper = new NorthActivityMapper(injector.getClientFactory());
-        ActivityManager northActivityManager = new ActivityManager(northActivityMapper, eventBus);
+        ActivityManager northActivityManager = injector.getNorthActivityManagerFactory().create(eventBus);
+
         // for west
         ActivityMapper westActivityMapper = new WestActivityMapper(injector.getClientFactory());
         ActivityManager westActivityManager = new ActivityManager(westActivityMapper, eventBus);
@@ -158,22 +186,6 @@ public class root implements EntryPoint {
         GWT.log("root --- onModuleLoad --- quitting method");
     }
 
-
-    public void onModuleLoad() {
-        UserStateManager usm = injector.getClientFactory().getUserStateManager();
-        usm.refReshUserState(new Command() {
-                    public void execute() {
-                        //onFailure
-                        onModuleLoad_auth_error();
-                    }
-                }, new Command() {
-            public void execute() {
-                //onSuccess
-                onModuleLoad_after_auth();
-            }
-        }
-        );
-    }
 
     private void onModuleLoad_auth_error() {
         HTML message = new HTML("<div style=\"position:absolute; top:10px; left:10px;\">" +
