@@ -26,11 +26,6 @@
     <set-property name="user.agent" value="safari"/>
     <extend-property values="gecko1_8" name="user.agent"/>
 
-    <!-- Use ClientFactoryImpl by default -->
-    <replace-with class="ge.lanmaster.onmap.root.client.ClientFactoryImpl">
-        <when-type-is class="ge.lanmaster.onmap.root.client.ClientFactory"/>
-    </replace-with>
-
     <!-- Specify the app entry point class.                         -->
     <entry-point class='ge.lanmaster.onmap.root.client.root'/>
 

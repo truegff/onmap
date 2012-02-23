@@ -2,13 +2,13 @@ package ge.lanmaster.onmap.root.client.gin;
 
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
-import com.google.web.bindery.event.shared.EventBus;
-import com.google.web.bindery.event.shared.SimpleEventBus;
+import ge.lanmaster.onmap.root.client.ClientFactory;
+import ge.lanmaster.onmap.root.client.ClientFactoryImpl;
 
 public class GinClassBindingModule extends AbstractGinModule {
 
     @Override
     protected void configure() {
-        bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
+        bind(ClientFactory.class).to(ClientFactoryImpl.class).in(Singleton.class);
     }
 }
