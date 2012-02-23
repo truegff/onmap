@@ -1,4 +1,4 @@
-package ge.lanmaster.onmap.root.client.mvp;
+package ge.lanmaster.onmap.root.client.mvp.north;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;

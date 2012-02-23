@@ -1,10 +1,10 @@
-package ge.lanmaster.onmap.root.client.gin;
+package ge.lanmaster.onmap.root.client.mvp.north;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
-import ge.lanmaster.onmap.root.client.mvp.NorthActivityMapper;
+import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityMapper;
 
 public class NorthActivityManager extends ActivityManager {
     @Inject

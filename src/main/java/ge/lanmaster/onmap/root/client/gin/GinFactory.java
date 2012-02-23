@@ -4,7 +4,8 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
-import ge.lanmaster.onmap.root.client.mvp.NorthActivityMapper;
+import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityManagerFactory;
+import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityMapper;
 
 @GinModules({GinClassBindingModule.class})
 public interface GinFactory extends Ginjector {

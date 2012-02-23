@@ -1,4 +1,4 @@
-package ge.lanmaster.onmap.root.client.gin;
+package ge.lanmaster.onmap.root.client.mvp.north;
 
 import com.google.web.bindery.event.shared.EventBus;
 

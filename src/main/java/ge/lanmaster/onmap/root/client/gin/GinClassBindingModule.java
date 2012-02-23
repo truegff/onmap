@@ -1,13 +1,13 @@
 package ge.lanmaster.onmap.root.client.gin;
 
-import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.google.inject.Singleton;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.ClientFactoryImpl;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
-import ge.lanmaster.onmap.root.client.mvp.NorthActivityMapper;
+import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityManagerFactory;
+import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityMapper;
 
 public class GinClassBindingModule extends AbstractGinModule {
 
