@@ -1,8 +1,9 @@
-package ge.lanmaster.onmap.root.client.mvp;
+package ge.lanmaster.onmap.root.client.mvp.center;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
+import com.google.inject.Inject;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.activity.center.CenterClientActivity;
 import ge.lanmaster.onmap.root.client.activity.center.CenterGuestActivity;
@@ -14,6 +15,7 @@ public class CenterActivityMapper implements ActivityMapper {
     private Activity currentActivity = null;
     private ClientFactory clientFactory;
 
+    @Inject
     public CenterActivityMapper(ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
     }

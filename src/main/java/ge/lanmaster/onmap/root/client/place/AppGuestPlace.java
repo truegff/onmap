@@ -7,7 +7,7 @@ public class AppGuestPlace extends Place {
     private String token;
 
     public AppGuestPlace(String name) {
-        this.token = token;
+        this.token = name;
     }
 
     public String getToken() {

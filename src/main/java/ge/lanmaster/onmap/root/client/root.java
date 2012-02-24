@@ -1,21 +1,20 @@
 package ge.lanmaster.onmap.root.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.web.bindery.event.shared.EventBus;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
-import ge.lanmaster.onmap.root.client.mvp.*;
+import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryMapper;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 
@@ -26,21 +25,43 @@ import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
  * @version 0.1-alpha
  */
 public class root implements EntryPoint {
+    private final GinFactory injector = GWT.create(GinFactory.class);
+
     /**
      * Main container in the app.
-     *
-     * @since 0.1-alpha
      */
-    Place appDefaultPlace = null;
     private SplitLayoutPanel appWidget = new SplitLayoutPanel();
+
+    Place appDefaultPlace = null;
 
     /**
      * The first method that is run in the very beginning of the program lifecycle.
-     *
-     * @param clientFactory - ClientFactory instance
      */
-    public void onModuleLoad_after_auth(ClientFactory clientFactory) {
-        if (clientFactory.getUserStateManager().getUserState().isLoggedIn()) {
+
+
+    public void onModuleLoad() {
+        //UserStateManager usm = injector.getClientFactory().getUserStateManager();
+        UserStateManager usm = injector.getUserStateManager();
+
+        //if (usm.equals(injector.getUserStateManager())) Window.alert("EQUAAALS!"); else Window.alert("NOTEQUAALS!");
+
+        usm.refReshUserState(new Command() {
+                    public void execute() {
+                        //onFailure
+                        onModuleLoad_auth_error();
+                    }
+                }, new Command() {
+            public void execute() {
+                //onSuccess
+                onModuleLoad_after_auth();
+            }
+        }
+        );
+    }
+
+
+    public void onModuleLoad_after_auth() {
+        if (injector.getUserStateManager().getUserState().isLoggedIn()) {
             appDefaultPlace = new AppClientPlace("");
         } else {
             appDefaultPlace = new AppGuestPlace("");
@@ -49,33 +70,17 @@ public class root implements EntryPoint {
 
         GWT.log("root --- onModuleLoad --- entering method");
 
-//        /**
-//         * Create ClientFactory using deferred binding, so we can replace with diffeerent
-//         * implementations specified in gwt.xml.
-//         *
-//         * @since 0.1-alpha
-//         * @see <link>http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html</link>
-//         */
-        GWT.log("   creating clientFactory instance");
+        //getting event bus
+        EventBus eventBus = injector.getClientFactory().getEventBus();
 
-//        /**
-//         * EventBus is needed to route events between different widgets.
-//         * EventBus is one for all, used by all widgets in an application.
-//         *
-//         * @since 0.1-alpha
-//         * @see <link>http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html</link>
-//         */
-        GWT.log("       getting eventBus instance from clientfactory");
-        EventBus eventBus = clientFactory.getEventBus();
+        //EventBus eventBus = (SimpleEventBus) injector.getMainEventBus();
+
 
 //        /**
 //         * PlaceController initiates navigation to a new Place and is responsible for warning the user before doing so.
-//         *
-//         * @since 0.1-alpha
-//         * @see <link>http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html</link>
 //         */
         GWT.log("           getting ***PlaceController instances from clientFactory");
-        PlaceController appPlaceController = clientFactory.getAppPlaceController();
+        PlaceController appPlaceController = injector.getClientFactory().getAppPlaceController();
 
 //        /**
 //         * The ActivityManager keeps track of all Activities running within the context of one container widget.
@@ -90,22 +95,12 @@ public class root implements EntryPoint {
 //         * @since 0.1-alpha
 //         * @see <link>http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html</link>
 //         */
-        GWT.log("               instantiating ***ActivityMapper && ***ActivityManager");
-        // for north
-        ActivityMapper northActivityMapper = new NorthActivityMapper(clientFactory);
-        ActivityManager northActivityManager = new ActivityManager(northActivityMapper, eventBus);
-        // for west
-        ActivityMapper westActivityMapper = new WestActivityMapper(clientFactory);
-        ActivityManager westActivityManager = new ActivityManager(westActivityMapper, eventBus);
-        // for center
-        ActivityMapper centerActivityMapper = new CenterActivityMapper(clientFactory);
-        ActivityManager centerActivityManager = new ActivityManager(centerActivityMapper, eventBus);
-        // for east
-        ActivityMapper eastActivityMapper = new EastActivityMapper(clientFactory);
-        ActivityManager eastActivityManager = new ActivityManager(eastActivityMapper, eventBus);
-        // for south
-        ActivityMapper southActivityMapper = new SouthActivityMapper(clientFactory);
-        ActivityManager southActivityManager = new ActivityManager(southActivityMapper, eventBus);
+        GWT.log("               instantiating ActivityManagers");
+        ActivityManager northActivityManager = injector.getNorthActivityManagerFactory().create(eventBus);
+        ActivityManager westActivityManager = injector.getWestActivityManagerFactory().create(eventBus);
+        ActivityManager centerActivityManager = injector.getCenterActivityManagerFactory().create(eventBus);
+        ActivityManager eastActivityManager = injector.getEastActivityManagerFactory().create(eventBus);
+        ActivityManager southActivityManager = injector.getSouthActivityManagerFactory().create(eventBus);
 
 //        /**
 //         * Not related to MVP stuff just containers.
@@ -177,24 +172,7 @@ public class root implements EntryPoint {
     }
 
 
-    public void onModuleLoad() {
-        final ClientFactory clientFactory = GWT.create(ClientFactory.class);
-        UserStateManager usm = clientFactory.getUserStateManager();
-        usm.refReshUserState(new Command() {
-                    public void execute() {
-                        //onFailure
-                        onModuleLoad_auth_error(clientFactory);
-                    }
-                }, new Command() {
-            public void execute() {
-                //onSuccess
-                onModuleLoad_after_auth(clientFactory);
-            }
-        }
-        );
-    }
-
-    private void onModuleLoad_auth_error(ClientFactory clientFactory) {
+    private void onModuleLoad_auth_error() {
         HTML message = new HTML("<div style=\"position:absolute; top:10px; left:10px;\">" +
                 "გთხოვთ გვესტუმროთ მოგვიანებით." +
                 "</div>");
@@ -202,33 +180,3 @@ public class root implements EntryPoint {
         RootLayoutPanel.get().add(message);
     }
 }
-
-//master lives its own life
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
