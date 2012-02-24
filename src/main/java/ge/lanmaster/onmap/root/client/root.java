@@ -1,7 +1,6 @@
 package ge.lanmaster.onmap.root.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
@@ -15,7 +14,7 @@ import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
-import ge.lanmaster.onmap.root.client.mvp.*;
+import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryMapper;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 
@@ -38,7 +37,6 @@ public class root implements EntryPoint {
     /**
      * The first method that is run in the very beginning of the program lifecycle.
      */
-
 
 
     public void onModuleLoad() {
@@ -97,22 +95,12 @@ public class root implements EntryPoint {
 //         * @since 0.1-alpha
 //         * @see <link>http://code.google.com/webtoolkit/doc/latest/DevGuideMvpActivitiesAndPlaces.html</link>
 //         */
-        GWT.log("               instantiating ***ActivityMapper && ***ActivityManager");
-        // for north
+        GWT.log("               instantiating ActivityManagers");
         ActivityManager northActivityManager = injector.getNorthActivityManagerFactory().create(eventBus);
-
-        // for west
-        ActivityMapper westActivityMapper = new WestActivityMapper(injector.getClientFactory());
-        ActivityManager westActivityManager = new ActivityManager(westActivityMapper, eventBus);
-        // for center
-        ActivityMapper centerActivityMapper = new CenterActivityMapper(injector.getClientFactory());
-        ActivityManager centerActivityManager = new ActivityManager(centerActivityMapper, eventBus);
-        // for east
-        ActivityMapper eastActivityMapper = new EastActivityMapper(injector.getClientFactory());
-        ActivityManager eastActivityManager = new ActivityManager(eastActivityMapper, eventBus);
-        // for south
-        ActivityMapper southActivityMapper = new SouthActivityMapper(injector.getClientFactory());
-        ActivityManager southActivityManager = new ActivityManager(southActivityMapper, eventBus);
+        ActivityManager westActivityManager = injector.getWestActivityManagerFactory().create(eventBus);
+        ActivityManager centerActivityManager = injector.getCenterActivityManagerFactory().create(eventBus);
+        ActivityManager eastActivityManager = injector.getEastActivityManagerFactory().create(eventBus);
+        ActivityManager southActivityManager = injector.getSouthActivityManagerFactory().create(eventBus);
 
 //        /**
 //         * Not related to MVP stuff just containers.
@@ -192,32 +180,3 @@ public class root implements EntryPoint {
         RootLayoutPanel.get().add(message);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,13 +1,15 @@
 package ge.lanmaster.onmap.root.client.gin;
 
 import com.google.gwt.inject.client.AbstractGinModule;
-import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.google.inject.Singleton;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.ClientFactoryImpl;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
-import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityManagerFactory;
+import ge.lanmaster.onmap.root.client.mvp.center.CenterActivityMapper;
+import ge.lanmaster.onmap.root.client.mvp.east.EastActivityMapper;
 import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityMapper;
+import ge.lanmaster.onmap.root.client.mvp.south.SouthActivityMapper;
+import ge.lanmaster.onmap.root.client.mvp.west.WestActivityMapper;
 
 public class GinClassBindingModule extends AbstractGinModule {
 
@@ -19,8 +21,9 @@ public class GinClassBindingModule extends AbstractGinModule {
         bind(UserStateManager.class).in(Singleton.class);
 
         bind(NorthActivityMapper.class).in(Singleton.class);
-
-        //proof of concept of assisted injection using custom factory
-        install(new GinFactoryModuleBuilder().build(NorthActivityManagerFactory.class));
+        bind(WestActivityMapper.class).in(Singleton.class);
+        bind(CenterActivityMapper.class).in(Singleton.class);
+        bind(EastActivityMapper.class).in(Singleton.class);
+        bind(SouthActivityMapper.class).in(Singleton.class);
     }
 }
