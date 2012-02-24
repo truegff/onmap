@@ -7,7 +7,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class WestActivityManager extends ActivityManager {
     @Inject
-    public WestActivityManager(WestActivityMapper mapper, @Assisted EventBus eventBus) {
+    public WestActivityManager(WestActivityMapper mapper, EventBus eventBus) {
         super(mapper, eventBus);
     }
 }

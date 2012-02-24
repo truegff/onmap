@@ -6,6 +6,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
@@ -57,15 +58,18 @@ public class root implements EntryPoint {
 
         GWT.log("root --- onModuleLoad --- entering method");
 
-        EventBus eventBus = injector.getClientFactory().getEventBus();
+        EventBus eventBus = injector.getEventBus();
+        if (eventBus.equals(injector.getEventBus())) Window.alert("EQUAAALS!"); else
+        Window.alert("PIZDEEEC!");
+
 
         PlaceController appPlaceController = injector.getClientFactory().getAppPlaceController();
 
-        ActivityManager northActivityManager = injector.getNorthActivityManagerFactory().create(eventBus);
-        ActivityManager westActivityManager = injector.getWestActivityManagerFactory().create(eventBus);
-        ActivityManager centerActivityManager = injector.getCenterActivityManagerFactory().create(eventBus);
-        ActivityManager eastActivityManager = injector.getEastActivityManagerFactory().create(eventBus);
-        ActivityManager southActivityManager = injector.getSouthActivityManagerFactory().create(eventBus);
+        ActivityManager northActivityManager = injector.getNorthActivityManager();
+        ActivityManager westActivityManager = injector.getWestActivityManager();
+        ActivityManager centerActivityManager = injector.getCenterActivityManager();
+        ActivityManager eastActivityManager = injector.getEastActivityManager();
+        ActivityManager southActivityManager = injector.getSouthActivityManager();
 
         /**
          * adding all containers to the main one
