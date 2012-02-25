@@ -7,6 +7,7 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.ClientFactoryImpl;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
+import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryMapper;
 import ge.lanmaster.onmap.root.client.mvp.center.CenterActivityManager;
@@ -56,5 +57,6 @@ public class GinClassBindingModule extends AbstractGinModule {
         
         bind(AppPlaceHistoryMapper.class).in(Singleton.class);
         bind(AppPlaceHistoryHandler.class).in(Singleton.class);
+        bind(AppPlaceController.class).in(Singleton.class);
     }
 }

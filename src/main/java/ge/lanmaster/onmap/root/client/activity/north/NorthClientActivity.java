@@ -1,13 +1,13 @@
 package ge.lanmaster.onmap.root.client.activity.north;
 
-import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.ClientFactory;
+import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
 import ge.lanmaster.onmap.root.client.ui.north.NorthClientView;
 
-public class NorthClientActivity extends AbstractActivity implements NorthClientView.Presenter{
+public class NorthClientActivity extends MyAbstractActivity implements NorthClientView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;

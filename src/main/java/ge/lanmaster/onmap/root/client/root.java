@@ -63,8 +63,6 @@ public class root implements EntryPoint {
         Window.alert("PIZDEEEC!");
 
 
-        PlaceController appPlaceController = injector.getClientFactory().getAppPlaceController();
-
         ActivityManager northActivityManager = injector.getNorthActivityManager();
         ActivityManager westActivityManager = injector.getWestActivityManager();
         ActivityManager centerActivityManager = injector.getCenterActivityManager();
@@ -91,7 +89,7 @@ public class root implements EntryPoint {
         eastActivityManager.setDisplay(injector.getEastPanel());
         southActivityManager.setDisplay(injector.getSouthPanel());
 
-        injector.getAppPlaceHistoryHandler().register(appPlaceController, eventBus, appDefaultPlace);
+        injector.getAppPlaceHistoryHandler().register(injector.getAppPlaceController(), eventBus, appDefaultPlace);
         injector.getAppPlaceHistoryHandler().handleCurrentHistory();
         RootLayoutPanel.get().add(appWidget);
 
