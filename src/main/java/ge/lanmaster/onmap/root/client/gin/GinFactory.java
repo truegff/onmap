@@ -4,8 +4,8 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.ClientFactory;
-import ge.lanmaster.onmap.root.client.activity.north.NorthClientActivityFactory;
-import ge.lanmaster.onmap.root.client.activity.north.NorthGuestActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.center.CenterActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.north.NorthActivityFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -20,6 +20,8 @@ import ge.lanmaster.onmap.root.client.mvp.south.SouthActivityManager;
 import ge.lanmaster.onmap.root.client.mvp.south.SouthActivityMapper;
 import ge.lanmaster.onmap.root.client.mvp.west.WestActivityManager;
 import ge.lanmaster.onmap.root.client.mvp.west.WestActivityMapper;
+import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
+import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterPanel;
 import ge.lanmaster.onmap.root.client.ui.east.EastPanel;
 import ge.lanmaster.onmap.root.client.ui.north.NorthClientView;
@@ -30,26 +32,27 @@ import ge.lanmaster.onmap.root.client.ui.west.WestPanel;
 
 @GinModules({GinClassBindingModule.class, GinFactoryBindingModule.class})
 public interface GinFactory extends Ginjector {
+
+    // generic
+    // deprecated
     ClientFactory getClientFactory();
 
+    // generic
+    // self
     GinFactory getGinFactory();
 
+    // generic
     EventBus getEventBus();
 
     UserStateManager getUserStateManager();
 
+    AppPlaceHistoryMapper getAppPlaceHistoryMapper();
 
-    NorthActivityMapper getNorthActivityMapper();
+    AppPlaceHistoryHandler getAppPlaceHistoryHandler();
 
-    WestActivityMapper getWestActivityMapper();
+    AppPlaceController getAppPlaceController();
 
-    CenterActivityMapper getCenterActivityMapper();
-
-    EastActivityMapper getEastActivityMapper();
-
-    SouthActivityMapper getSouthActivityMapper();
-
-
+    // Panels
     CenterPanel getCenterPanel();
 
     EastPanel getEastPanel();
@@ -60,7 +63,18 @@ public interface GinFactory extends Ginjector {
 
     WestPanel getWestPanel();
 
+    // ActivityMappers
+    NorthActivityMapper getNorthActivityMapper();
 
+    WestActivityMapper getWestActivityMapper();
+
+    CenterActivityMapper getCenterActivityMapper();
+
+    EastActivityMapper getEastActivityMapper();
+
+    SouthActivityMapper getSouthActivityMapper();
+
+    // ActivityManagers
     NorthActivityManager getNorthActivityManager();
 
     WestActivityManager getWestActivityManager();
@@ -71,20 +85,19 @@ public interface GinFactory extends Ginjector {
 
     SouthActivityManager getSouthActivityManager();
 
-
-
+    // Views
+    //--North
     NorthGuestView getNorthGuestView();
 
     NorthClientView getNorthClientView();
 
-    
-    NorthGuestActivityFactory getNorthGuestActivityFactory();
-    NorthClientActivityFactory getNorthClientActivityFactory();
+    //--Center
+    CenterGuestView getCenterGuestView();
 
+    CenterClientView getCenterClientView();
 
-    AppPlaceHistoryMapper getAppPlaceHistoryMapper();
+    // ActivityFactories
+    NorthActivityFactory getNorthActivityFactory();
 
-    AppPlaceHistoryHandler getAppPlaceHistoryHandler();
-
-    AppPlaceController getAppPlaceController();
+    CenterActivityFactory getCenterActivityFactory();
 }

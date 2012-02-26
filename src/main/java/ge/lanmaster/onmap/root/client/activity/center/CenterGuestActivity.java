@@ -2,30 +2,34 @@ package ge.lanmaster.onmap.root.client.activity.center;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
 
 public class CenterGuestActivity extends MyAbstractActivity implements CenterGuestView.Presenter {
 
-    private ClientFactory clientFactory;
+    private GinFactory injector;
     private String name;
 
-    public CenterGuestActivity(ClientFactory clientFactory, String name) {
-        this.clientFactory = clientFactory;
+    @Inject
+    public CenterGuestActivity(GinFactory injector, @Assisted String name) {
+        this.injector = injector;
         this.name = name;
     }
 
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-        CenterGuestView centerGuestView = clientFactory.getCenterGuestView();
+        CenterGuestView centerGuestView = injector.getCenterGuestView();
         centerGuestView.setName(name);
         centerGuestView.setPresenter(this);
         containerWidget.setWidget(centerGuestView.asWidget());
     }
 
     public void goTo(Place place) {
-        clientFactory.getAppPlaceController().goTo(place);
+        injector.getAppPlaceController().goTo(place);
     }
 
     public String mayStop() {

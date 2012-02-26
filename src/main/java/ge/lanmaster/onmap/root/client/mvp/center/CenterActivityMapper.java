@@ -7,25 +7,26 @@ import com.google.inject.Inject;
 import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.activity.center.CenterClientActivity;
 import ge.lanmaster.onmap.root.client.activity.center.CenterGuestActivity;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 
 public class CenterActivityMapper implements ActivityMapper {
 
     private Activity currentActivity = null;
-    private ClientFactory clientFactory;
+    private GinFactory injector;
 
     @Inject
-    public CenterActivityMapper(ClientFactory clientFactory) {
-        this.clientFactory = clientFactory;
+    public CenterActivityMapper(GinFactory injector) {
+        this.injector = injector;
     }
 
     public Activity getActivity(Place place) {
         if (place instanceof AppGuestPlace) {
-            currentActivity = new CenterGuestActivity(clientFactory, ((AppGuestPlace) place).getToken());
+            currentActivity = injector.getCenterActivityFactory().createCenterGuestActivity(((AppGuestPlace) place).getToken());
             return currentActivity;
         } else if (place instanceof AppClientPlace) {
-            currentActivity = new CenterClientActivity(clientFactory, ((AppClientPlace) place).getToken());
+            currentActivity = injector.getCenterActivityFactory().createCenterClientActivity(((AppClientPlace) place).getToken());
             return currentActivity;
         }
 //        else if (place instanceof CenterGuestPlace) {
