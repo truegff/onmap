@@ -58,10 +58,10 @@ public class root implements EntryPoint {
 
         GWT.log("root --- onModuleLoad --- entering method");
 
-        EventBus eventBus = injector.getEventBus();
-        if (eventBus.equals(injector.getEventBus())) Window.alert("EQUAAALS!"); else
-        Window.alert("PIZDEEEC!");
-
+        
+        if (injector.equals(injector.getGinFactory())) Window.alert("UrAAAAAA");
+        else Window.alert("Pizdeec");
+        
 
         ActivityManager northActivityManager = injector.getNorthActivityManager();
         ActivityManager westActivityManager = injector.getWestActivityManager();
@@ -89,7 +89,7 @@ public class root implements EntryPoint {
         eastActivityManager.setDisplay(injector.getEastPanel());
         southActivityManager.setDisplay(injector.getSouthPanel());
 
-        injector.getAppPlaceHistoryHandler().register(injector.getAppPlaceController(), eventBus, appDefaultPlace);
+        injector.getAppPlaceHistoryHandler().register(injector.getAppPlaceController(), injector.getEventBus(), appDefaultPlace);
         injector.getAppPlaceHistoryHandler().handleCurrentHistory();
         RootLayoutPanel.get().add(appWidget);
 

@@ -22,7 +22,7 @@ import ge.lanmaster.onmap.root.client.mvp.west.WestActivityManager;
 import ge.lanmaster.onmap.root.client.mvp.west.WestActivityMapper;
 import ge.lanmaster.onmap.root.client.ui.center.CenterPanel;
 import ge.lanmaster.onmap.root.client.ui.east.EastPanel;
-import ge.lanmaster.onmap.root.client.ui.north.NorthPanel;
+import ge.lanmaster.onmap.root.client.ui.north.*;
 import ge.lanmaster.onmap.root.client.ui.south.SouthPanel;
 import ge.lanmaster.onmap.root.client.ui.west.WestPanel;
 
@@ -31,7 +31,10 @@ public class GinClassBindingModule extends AbstractGinModule {
     @Override
     protected void configure() {
         //deprecated
+        //bind(ClientFactory.class).to(ClientFactoryImpl.class).in(Singleton.class);
         bind(ClientFactory.class).to(ClientFactoryImpl.class).in(Singleton.class);
+
+        bind(GinFactory.class).in(Singleton.class);
 
         bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
         
@@ -55,6 +58,10 @@ public class GinClassBindingModule extends AbstractGinModule {
         bind(SouthPanel.class).in(Singleton.class);
         bind(WestPanel.class).in(Singleton.class);
         
+        bind(NorthGuestView.class).to(NorthGuestViewImpl.class).in(Singleton.class);
+        bind(NorthClientView.class).to(NorthClientViewImpl.class).in(Singleton.class);
+        //bind(NorthGuestView.class).to(NorthGuestViewImpl.class).in(Singleton.class);
+
         bind(AppPlaceHistoryMapper.class).in(Singleton.class);
         bind(AppPlaceHistoryHandler.class).in(Singleton.class);
         bind(AppPlaceController.class).in(Singleton.class);
