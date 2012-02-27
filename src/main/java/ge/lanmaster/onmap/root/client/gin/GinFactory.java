@@ -3,9 +3,11 @@ package ge.lanmaster.onmap.root.client.gin;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.google.web.bindery.event.shared.EventBus;
-import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.activity.center.CenterActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.east.EastActivityFactory;
 import ge.lanmaster.onmap.root.client.activity.north.NorthActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.south.SouthActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.west.WestActivityFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -23,19 +25,18 @@ import ge.lanmaster.onmap.root.client.mvp.west.WestActivityMapper;
 import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterPanel;
+import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
 import ge.lanmaster.onmap.root.client.ui.east.EastPanel;
 import ge.lanmaster.onmap.root.client.ui.north.NorthClientView;
 import ge.lanmaster.onmap.root.client.ui.north.NorthGuestView;
 import ge.lanmaster.onmap.root.client.ui.north.NorthPanel;
+import ge.lanmaster.onmap.root.client.ui.south.SouthGuestView;
 import ge.lanmaster.onmap.root.client.ui.south.SouthPanel;
+import ge.lanmaster.onmap.root.client.ui.west.WestGuestView;
 import ge.lanmaster.onmap.root.client.ui.west.WestPanel;
 
 @GinModules({GinClassBindingModule.class, GinFactoryBindingModule.class})
 public interface GinFactory extends Ginjector {
-
-    // generic
-    // deprecated
-    ClientFactory getClientFactory();
 
     // generic
     // self
@@ -86,18 +87,29 @@ public interface GinFactory extends Ginjector {
     SouthActivityManager getSouthActivityManager();
 
     // Views
-    //--North
     NorthGuestView getNorthGuestView();
 
     NorthClientView getNorthClientView();
 
-    //--Center
     CenterGuestView getCenterGuestView();
 
     CenterClientView getCenterClientView();
+
+    EastGuestView getEastGuestView();
+
+    SouthGuestView getSouthGuestView();
+
+    WestGuestView getWestGuestView();
 
     // ActivityFactories
     NorthActivityFactory getNorthActivityFactory();
 
     CenterActivityFactory getCenterActivityFactory();
+
+    EastActivityFactory getEastActivityFactory();
+
+    SouthActivityFactory getSouthActivityFactory();
+
+    WestActivityFactory getWestActivityFactory();
+
 }

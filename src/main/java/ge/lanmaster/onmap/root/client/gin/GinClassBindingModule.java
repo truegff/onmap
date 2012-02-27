@@ -4,8 +4,6 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
-import ge.lanmaster.onmap.root.client.ClientFactory;
-import ge.lanmaster.onmap.root.client.ClientFactoryImpl;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -36,8 +34,6 @@ public class GinClassBindingModule extends AbstractGinModule {
 
     @Override
     protected void configure() {
-        //deprecated
-        bind(ClientFactory.class).to(ClientFactoryImpl.class).in(Singleton.class);
 
         //general
         bind(GinFactory.class).in(Singleton.class);

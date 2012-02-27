@@ -2,23 +2,26 @@ package ge.lanmaster.onmap.root.client.activity.east;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
-import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
 
 public class EastGuestActivity extends MyAbstractActivity implements EastGuestView.Presenter {
 
-    private ClientFactory clientFactory;
+    private GinFactory injector;
     private String name;
 
-    public EastGuestActivity(ClientFactory clientFactory, String name) {
-        this.clientFactory = clientFactory;
+    @Inject
+    public EastGuestActivity(GinFactory injector, @Assisted String name) {
+        this.injector = injector;
         this.name = name;
     }
 
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-        EastGuestView eastGuestView = clientFactory.getEastGuestView();
+        EastGuestView eastGuestView = injector.getEastGuestView();
         eastGuestView.setName(name);
         eastGuestView.setPresenter(this);
         containerWidget.setWidget(eastGuestView.asWidget());
@@ -30,6 +33,6 @@ public class EastGuestActivity extends MyAbstractActivity implements EastGuestVi
     }
 
     public void goTo(Place place) {
-        clientFactory.getAppPlaceController().goTo(place);
+        injector.getAppPlaceController().goTo(place);
     }
 }

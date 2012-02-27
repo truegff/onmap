@@ -5,7 +5,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
-import ge.lanmaster.onmap.root.client.ClientFactory;
 import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
@@ -29,7 +28,7 @@ public class CenterClientActivity extends MyAbstractActivity implements CenterCl
     }
 
     public void goTo(Place place) {
-       injector.getAppPlaceController().goTo(place);
+        injector.getAppPlaceController().goTo(place);
     }
 
     public String mayStop() {

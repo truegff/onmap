@@ -1,16 +1,12 @@
 package ge.lanmaster.onmap.root.client;
 
-import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
-import com.google.web.bindery.event.shared.EventBus;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
@@ -33,18 +29,18 @@ public class root implements EntryPoint {
         UserStateManager usm = injector.getUserStateManager();
 
         usm.refReshUserState(
-            new Command() {
-                public void execute() {
-                    //onFailure
-                    onModuleLoad_auth_error();
+                new Command() {
+                    public void execute() {
+                        //onFailure
+                        onModuleLoad_auth_error();
+                    }
+                },
+                new Command() {
+                    public void execute() {
+                        //onSuccess
+                        onModuleLoad_after_auth();
+                    }
                 }
-            },
-            new Command() {
-                public void execute() {
-                    //onSuccess
-                    onModuleLoad_after_auth();
-                }
-            }
         );
     }
 
@@ -57,17 +53,6 @@ public class root implements EntryPoint {
         }
 
         GWT.log("root --- onModuleLoad --- entering method");
-
-        
-        if (injector.equals(injector.getGinFactory())) Window.alert("UrAAAAAA");
-        else Window.alert("Pizdeec");
-        
-
-        ActivityManager northActivityManager = injector.getNorthActivityManager();
-        ActivityManager westActivityManager = injector.getWestActivityManager();
-        ActivityManager centerActivityManager = injector.getCenterActivityManager();
-        ActivityManager eastActivityManager = injector.getEastActivityManager();
-        ActivityManager southActivityManager = injector.getSouthActivityManager();
 
         /**
          * adding all containers to the main one
@@ -83,11 +68,11 @@ public class root implements EntryPoint {
          * specifying their working areas to activity managers
          */
         GWT.log("           specifying display panels for activityManagers");
-        northActivityManager.setDisplay(injector.getNorthPanel());
-        westActivityManager.setDisplay(injector.getWestPanel());
-        centerActivityManager.setDisplay(injector.getCenterPanel());
-        eastActivityManager.setDisplay(injector.getEastPanel());
-        southActivityManager.setDisplay(injector.getSouthPanel());
+        injector.getNorthActivityManager().setDisplay(injector.getNorthPanel());
+        injector.getWestActivityManager().setDisplay(injector.getWestPanel());
+        injector.getCenterActivityManager().setDisplay(injector.getCenterPanel());
+        injector.getEastActivityManager().setDisplay(injector.getEastPanel());
+        injector.getSouthActivityManager().setDisplay(injector.getSouthPanel());
 
         injector.getAppPlaceHistoryHandler().register(injector.getAppPlaceController(), injector.getEventBus(), appDefaultPlace);
         injector.getAppPlaceHistoryHandler().handleCurrentHistory();

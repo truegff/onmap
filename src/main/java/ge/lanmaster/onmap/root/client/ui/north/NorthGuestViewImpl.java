@@ -8,9 +8,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
-import ge.lanmaster.onmap.root.client.ClientFactory;
-import ge.lanmaster.onmap.root.client.gin.GinFactory;
 
 public class NorthGuestViewImpl extends Composite implements NorthGuestView {
 
