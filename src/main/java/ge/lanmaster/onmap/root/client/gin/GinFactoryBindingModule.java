@@ -2,19 +2,19 @@ package ge.lanmaster.onmap.root.client.gin;
 
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
-import ge.lanmaster.onmap.root.client.mvp.center.CenterActivityManagerFactory;
-import ge.lanmaster.onmap.root.client.mvp.east.EastActivityManagerFactory;
-import ge.lanmaster.onmap.root.client.mvp.north.NorthActivityManagerFactory;
-import ge.lanmaster.onmap.root.client.mvp.south.SouthActivityManagerFactory;
-import ge.lanmaster.onmap.root.client.mvp.west.WestActivityManagerFactory;
+import ge.lanmaster.onmap.root.client.activity.center.CenterActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.east.EastActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.north.NorthActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.south.SouthActivityFactory;
+import ge.lanmaster.onmap.root.client.activity.west.WestActivityFactory;
 
 public class GinFactoryBindingModule extends AbstractGinModule {
     @Override
     protected void configure() {
-        install(new GinFactoryModuleBuilder().build(NorthActivityManagerFactory.class));
-        install(new GinFactoryModuleBuilder().build(WestActivityManagerFactory.class));
-        install(new GinFactoryModuleBuilder().build(CenterActivityManagerFactory.class));
-        install(new GinFactoryModuleBuilder().build(EastActivityManagerFactory.class));
-        install(new GinFactoryModuleBuilder().build(SouthActivityManagerFactory.class));
+        install(new GinFactoryModuleBuilder().build(NorthActivityFactory.class));
+        install(new GinFactoryModuleBuilder().build(CenterActivityFactory.class));
+        install(new GinFactoryModuleBuilder().build(EastActivityFactory.class));
+        install(new GinFactoryModuleBuilder().build(SouthActivityFactory.class));
+        install(new GinFactoryModuleBuilder().build(WestActivityFactory.class));
     }
 }

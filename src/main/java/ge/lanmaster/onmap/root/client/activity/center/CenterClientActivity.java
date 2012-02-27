@@ -1,31 +1,34 @@
 package ge.lanmaster.onmap.root.client.activity.center;
 
-import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import ge.lanmaster.onmap.root.client.ClientFactory;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+import com.google.web.bindery.event.shared.EventBus;
+import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
 
-public class CenterClientActivity extends AbstractActivity implements CenterClientView.Presenter {
+public class CenterClientActivity extends MyAbstractActivity implements CenterClientView.Presenter {
 
-    private ClientFactory clientFactory;
+    private GinFactory injector;
     private String name;
 
-    public CenterClientActivity(ClientFactory clientFactory, String name) {
-        this.clientFactory = clientFactory;
+    @Inject
+    public CenterClientActivity(GinFactory injector, @Assisted String name) {
+        this.injector = injector;
         this.name = name;
     }
 
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-        CenterClientView centerGuestView = clientFactory.getCenterClientView();
+        CenterClientView centerGuestView = injector.getCenterClientView();
         centerGuestView.setName(name);
         centerGuestView.setPresenter(this);
         containerWidget.setWidget(centerGuestView.asWidget());
     }
 
     public void goTo(Place place) {
-        clientFactory.getAppPlaceController().goTo(place);
+        injector.getAppPlaceController().goTo(place);
     }
 
     public String mayStop() {

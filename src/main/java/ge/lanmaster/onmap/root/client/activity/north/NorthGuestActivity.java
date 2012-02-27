@@ -1,26 +1,30 @@
 package ge.lanmaster.onmap.root.client.activity.north;
 
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import ge.lanmaster.onmap.root.client.ClientFactory;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+import com.google.web.bindery.event.shared.EventBus;
+import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
+import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.ui.north.NorthGuestView;
 
-public class NorthGuestActivity extends AbstractActivity implements NorthGuestView.Presenter{
+public class NorthGuestActivity extends MyAbstractActivity implements NorthGuestView.Presenter {
 
-    private ClientFactory clientFactory;
+    private GinFactory injector;
     private String name;
 
-    public NorthGuestActivity(ClientFactory clientFactory, String name) {
+    @Inject
+    public NorthGuestActivity(GinFactory injector, @Assisted String name) {
         this.name = name;
-        this.clientFactory = clientFactory;
+        this.injector = injector;
         GWT.log(name);
     }
 
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-        NorthGuestView northGuestView = clientFactory.getNorthGuestView();
+        NorthGuestView northGuestView = injector.getNorthGuestView();
         northGuestView.setName(name);
         northGuestView.setPresenter(this);
         containerWidget.setWidget(northGuestView.asWidget());
@@ -32,10 +36,10 @@ public class NorthGuestActivity extends AbstractActivity implements NorthGuestVi
     }
 
     public void goTo(Place place) {
-        clientFactory.getAppPlaceController().goTo(place);
+        injector.getAppPlaceController().goTo(place);
     }
 
-    public ClientFactory getClientFactory() {
-        return clientFactory;
+    public UserStateManager getUserStateManager() {
+        return injector.getUserStateManager();
     }
 }

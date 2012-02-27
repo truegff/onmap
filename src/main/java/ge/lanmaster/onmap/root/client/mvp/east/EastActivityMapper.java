@@ -4,23 +4,22 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
-import ge.lanmaster.onmap.root.client.ClientFactory;
-import ge.lanmaster.onmap.root.client.activity.east.EastGuestActivity;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 
 public class EastActivityMapper implements ActivityMapper {
 
     private Activity currentActivity = null;
-    private ClientFactory clientFactory;
+    private GinFactory injector;
 
     @Inject
-    public EastActivityMapper(ClientFactory clientFactory) {
-        this.clientFactory = clientFactory;
+    public EastActivityMapper(GinFactory injector) {
+        this.injector = injector;
     }
 
     public Activity getActivity(Place place) {
         if (place instanceof AppGuestPlace) {
-            currentActivity = new EastGuestActivity(clientFactory, ((AppGuestPlace) place).getToken());
+            currentActivity = injector.getEastActivityFactory().createEastGuestActivity(((AppGuestPlace) place).getToken());
             return currentActivity;
         }
 //        else if (place instanceof EastGuestPlace)  {
