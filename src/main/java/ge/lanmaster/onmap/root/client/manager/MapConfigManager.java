@@ -17,7 +17,7 @@ public class MapConfigManager {
     public void retrieveMapConfig(final Command successCase, final Command failureCase) {
 
         try {
-            dataTransferService.getUserMapConfig(
+            dataTransferService.getMapConfig(
                     new AsyncCallback<MapConfig>() {
                         public void onFailure(Throwable caught) {
                             failureCase.execute();

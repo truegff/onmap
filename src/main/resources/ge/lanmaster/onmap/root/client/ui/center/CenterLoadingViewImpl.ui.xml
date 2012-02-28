@@ -19,7 +19,7 @@
         }
     </ui:style>
 
-    <g:SimplePanel id="CenterLoadingView_abspanel" addStyleNames="{style.fullSize}">
+    <g:SimplePanel addStyleNames="{style.fullSize}">
 
         <g:HTMLPanel addStyleNames="{style.fullSize}">
             <table style="height:100%; width:100%">

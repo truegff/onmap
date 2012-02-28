@@ -35,3 +35,4 @@ public class CenterLoadingViewImpl extends Composite implements CenterLoadingVie
         this.presenter = presenter;
     }
 }
+
