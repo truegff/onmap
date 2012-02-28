@@ -8,6 +8,7 @@ import ge.lanmaster.onmap.root.client.activity.east.EastActivityFactory;
 import ge.lanmaster.onmap.root.client.activity.north.NorthActivityFactory;
 import ge.lanmaster.onmap.root.client.activity.south.SouthActivityFactory;
 import ge.lanmaster.onmap.root.client.activity.west.WestActivityFactory;
+import ge.lanmaster.onmap.root.client.manager.MapConfigManager;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -24,6 +25,7 @@ import ge.lanmaster.onmap.root.client.mvp.west.WestActivityManager;
 import ge.lanmaster.onmap.root.client.mvp.west.WestActivityMapper;
 import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
+import ge.lanmaster.onmap.root.client.ui.center.CenterLoadingView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterPanel;
 import ge.lanmaster.onmap.root.client.ui.east.EastGuestView;
 import ge.lanmaster.onmap.root.client.ui.east.EastPanel;
@@ -46,6 +48,8 @@ public interface GinFactory extends Ginjector {
     EventBus getEventBus();
 
     UserStateManager getUserStateManager();
+
+    MapConfigManager getMapConfigManager();
 
     AppPlaceHistoryMapper getAppPlaceHistoryMapper();
 
@@ -94,6 +98,8 @@ public interface GinFactory extends Ginjector {
     CenterGuestView getCenterGuestView();
 
     CenterClientView getCenterClientView();
+
+    CenterLoadingView getCenterLoadingView();
 
     EastGuestView getEastGuestView();
 

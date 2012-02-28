@@ -7,6 +7,12 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
+import ge.lanmaster.onmap.root.client.event.center.MapLoadedEvent;
+import ge.lanmaster.onmap.root.client.event.center.MapLoadedEventHandler;
+import ge.lanmaster.onmap.root.client.event.general.ModuleLoadEvent;
+import ge.lanmaster.onmap.root.client.event.general.ModuleLoadEventHandler;
+import ge.lanmaster.onmap.root.client.event.general.UserStateRefreshSuccessEvent;
+import ge.lanmaster.onmap.root.client.event.general.UserStateRefreshSuccessEventHandler;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
@@ -19,13 +25,36 @@ import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
  * @version 0.1-alpha
  */
 public class root implements EntryPoint {
+
     private final GinFactory injector = GWT.create(GinFactory.class);
+
+    {
+        injector.getEventBus().addHandler(MapLoadedEvent.TYPE, new MapLoadedEventHandler() {
+            public void onMapLoaded(MapLoadedEvent event) {
+                //Window.alert("Map Loaded! Yippee!");
+            }
+        });
+
+        injector.getEventBus().addHandler(ModuleLoadEvent.TYPE, new ModuleLoadEventHandler() {
+            public void onModuleLoad(ModuleLoadEvent event) {
+                //Window.alert("onModuleLoad");
+            }
+        });
+
+        injector.getEventBus().addHandler(UserStateRefreshSuccessEvent.TYPE, new UserStateRefreshSuccessEventHandler() {
+            public void onUserStateRefreshSuccess(UserStateRefreshSuccessEvent event) {
+                //Window.alert("UserStateRefreshSuccess: "+injector.getUserStateManager().getUserState().getEmailAddress());
+            }
+        });
+    }
 
     private SplitLayoutPanel appWidget = new SplitLayoutPanel();
 
     Place appDefaultPlace = null;
 
     public void onModuleLoad() {
+        injector.getEventBus().fireEvent(new ModuleLoadEvent());
+
         UserStateManager usm = injector.getUserStateManager();
 
         usm.refReshUserState(
@@ -38,6 +67,7 @@ public class root implements EntryPoint {
                 new Command() {
                     public void execute() {
                         //onSuccess
+                        injector.getEventBus().fireEvent(new UserStateRefreshSuccessEvent());
                         onModuleLoad_after_auth();
                     }
                 }
@@ -63,6 +93,7 @@ public class root implements EntryPoint {
         appWidget.addEast(injector.getEastPanel(), 200);
         appWidget.addWest(injector.getWestPanel(), 200);
         appWidget.add(injector.getCenterPanel());
+
 
         /**
          * specifying their working areas to activity managers

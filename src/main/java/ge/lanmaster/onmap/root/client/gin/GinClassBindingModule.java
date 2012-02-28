@@ -4,6 +4,7 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import ge.lanmaster.onmap.root.client.manager.MapConfigManager;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -44,6 +45,7 @@ public class GinClassBindingModule extends AbstractGinModule {
 
         //managers
         bind(UserStateManager.class).in(Singleton.class);
+        bind(MapConfigManager.class).in(Singleton.class);
 
         //activitymappers
         bind(NorthActivityMapper.class).in(Singleton.class);
@@ -71,6 +73,7 @@ public class GinClassBindingModule extends AbstractGinModule {
         bind(NorthClientView.class).to(NorthClientViewImpl.class).in(Singleton.class);
         bind(CenterGuestView.class).to(CenterGuestViewImpl.class).in(Singleton.class);
         bind(CenterClientView.class).to(CenterClientViewImpl.class).in(Singleton.class);
+        bind(CenterLoadingView.class).to(CenterLoadingViewImpl.class).in(Singleton.class);
         bind(SouthGuestView.class).to(SouthGuestViewImpl.class).in(Singleton.class);
         bind(WestGuestView.class).to(WestGuestViewImpl.class).in(Singleton.class);
         bind(EastGuestView.class).to(EastGuestViewImpl.class).in(Singleton.class);
