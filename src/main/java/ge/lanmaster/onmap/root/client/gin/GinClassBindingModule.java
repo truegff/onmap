@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import ge.lanmaster.onmap.root.client.manager.MapConfigManager;
+import ge.lanmaster.onmap.root.client.manager.MapPreloadManager;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -46,6 +47,7 @@ public class GinClassBindingModule extends AbstractGinModule {
         //managers
         bind(UserStateManager.class).in(Singleton.class);
         bind(MapConfigManager.class).in(Singleton.class);
+        bind(MapPreloadManager.class).in(Singleton.class);
 
         //activitymappers
         bind(NorthActivityMapper.class).in(Singleton.class);

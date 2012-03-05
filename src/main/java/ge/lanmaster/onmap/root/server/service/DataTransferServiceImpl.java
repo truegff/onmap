@@ -3,6 +3,7 @@ package ge.lanmaster.onmap.root.server.service;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import ge.lanmaster.onmap.root.client.entity.MapConfig;
+import ge.lanmaster.onmap.root.client.entity.defaults.DefaultMapConfig;
 import ge.lanmaster.onmap.root.client.services.DataTransferService;
 import ge.lanmaster.onmap.root.server.ServerFactory;
 
@@ -17,11 +18,18 @@ public class DataTransferServiceImpl extends RemoteServiceServlet implements Dat
 
     public MapConfig getMapConfig() {
         MapConfig mapConfig = null;
-        if (factory.getUserService().isUserLoggedIn()) {
-            //try to get users mapconfig
-        } else {
-            //assign default one
-        }
+        Boolean userLoggedIn = false;
+        userLoggedIn = factory.getUserService().isUserLoggedIn();
+//
+//        if (userLoggedIn) {
+//            MapConfigHandler mapConfigHandler = factory.getMapConfigHandler();
+//            mapConfigHandler.getMapConfig();
+//            //try to get users mapconfig
+//        } else {
+//            //assign default one
+//            mapConfig = new DefaultMapConfig();
+//        }
+        mapConfig = new DefaultMapConfig();
         return mapConfig;
     }
 }

@@ -9,6 +9,7 @@ import ge.lanmaster.onmap.root.client.activity.north.NorthActivityFactory;
 import ge.lanmaster.onmap.root.client.activity.south.SouthActivityFactory;
 import ge.lanmaster.onmap.root.client.activity.west.WestActivityFactory;
 import ge.lanmaster.onmap.root.client.manager.MapConfigManager;
+import ge.lanmaster.onmap.root.client.manager.MapPreloadManager;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceController;
 import ge.lanmaster.onmap.root.client.mvp.AppPlaceHistoryHandler;
@@ -50,6 +51,8 @@ public interface GinFactory extends Ginjector {
     UserStateManager getUserStateManager();
 
     MapConfigManager getMapConfigManager();
+
+    MapPreloadManager getMapPreloadManager();
 
     AppPlaceHistoryMapper getAppPlaceHistoryMapper();
 

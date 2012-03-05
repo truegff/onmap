@@ -1,10 +1,11 @@
 package ge.lanmaster.onmap.root.client.manager;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import ge.lanmaster.onmap.root.client.entity.MapConfig;
+import ge.lanmaster.onmap.root.client.event.center.IMapConfigReadyMarker;
+import ge.lanmaster.onmap.root.client.event.center.MapReadyEvent;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.services.DataTransferServiceAsync;
 
 public class MapConfigManager {
@@ -13,26 +14,30 @@ public class MapConfigManager {
     DataTransferServiceAsync dataTransferService;
 
     private MapConfig mapConfig;
+    private GinFactory injector;
 
-    public void retrieveMapConfig(final Command successCase, final Command failureCase) {
+    @Inject
+    public MapConfigManager(GinFactory injector) {
+        this.injector = injector;
+    }
 
-        try {
-            dataTransferService.getMapConfig(
-                    new AsyncCallback<MapConfig>() {
-                        public void onFailure(Throwable caught) {
-                            failureCase.execute();
-                        }
-
-                        public void onSuccess(MapConfig result) {
-                            mapConfig = result;
-                            successCase.execute();
-                        }
+    public void retrieveMapConfig() {
+        dataTransferService.getMapConfig(
+                new AsyncCallback<MapConfig>() {
+                    public void onFailure(Throwable caught) {
+                        //todo: think what to do in this case
+                        //failureCase.execute();
                     }
-            );
-        } catch (Exception e) {
-            failureCase.execute();
-            GWT.log(e.getMessage());
-        }
+
+                    public void onSuccess(MapConfig result) {
+                        mapConfig = result;
+                        injector.getEventBus().fireEvent(new MapReadyEvent(new IMapConfigReadyMarker() {
+                        }));
+
+                        //successCase.execute();
+                    }
+                }
+        );
     }
 
     public MapConfig getMapConfig() {

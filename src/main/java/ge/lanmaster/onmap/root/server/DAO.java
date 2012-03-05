@@ -14,10 +14,10 @@ import ge.lanmaster.onmap.root.client.entity.Visit;
  * Time: 6:02 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DAO<T> extends DAOBase{
-    
+public class DAO<T> extends DAOBase {
+
     private Class<T> clazz;
-    
+
     static {
         ObjectifyService.register(Visit.class);
         ObjectifyService.register(Car.class);
@@ -26,6 +26,7 @@ public class DAO<T> extends DAOBase{
     public DAO(Class<T> clazz) {
         this.clazz = clazz;
     }
+
 
     public T getOrCreate(Long id) {
         Objectify ofy = ObjectifyService.begin();
@@ -43,7 +44,24 @@ public class DAO<T> extends DAOBase{
 
         return found;
     }
-    
+
+    public T getOrCreate(String id) {
+        Objectify ofy = ObjectifyService.begin();
+        T found = ofy.find(clazz, id);
+
+        if (found == null) {
+            try {
+                found = clazz.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return found;
+    }
+
     public Key<T> put(T thing) {
         Objectify ofy = ObjectifyService.begin();
         Key<T> key = ofy.put(thing);

@@ -21,8 +21,7 @@
             </g:FlowPanel>
         </g:north>
         <g:center>
-            <g:HTMLPanel addStyleNames="{style.fullSize}">
-                MAP HERE
+            <g:HTMLPanel ui:field="map" addStyleNames="{style.fullSize}">
             </g:HTMLPanel>
         </g:center>
     </g:DockLayoutPanel>
