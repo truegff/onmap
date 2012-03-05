@@ -2,10 +2,15 @@ package ge.lanmaster.onmap.root.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
+import com.googlecode.objectify.Key;
 import ge.lanmaster.onmap.root.client.entity.MapConfig;
 import ge.lanmaster.onmap.root.client.entity.defaults.DefaultMapConfig;
 import ge.lanmaster.onmap.root.client.services.DataTransferService;
 import ge.lanmaster.onmap.root.server.ServerFactory;
+import ge.lanmaster.onmap.root.server.manager.MapConfigHandler;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataTransferServiceImpl extends RemoteServiceServlet implements DataTransferService {
 
@@ -20,16 +25,33 @@ public class DataTransferServiceImpl extends RemoteServiceServlet implements Dat
         MapConfig mapConfig = null;
         Boolean userLoggedIn = false;
         userLoggedIn = factory.getUserService().isUserLoggedIn();
-//
-//        if (userLoggedIn) {
-//            MapConfigHandler mapConfigHandler = factory.getMapConfigHandler();
-//            mapConfigHandler.getMapConfig();
-//            //try to get users mapconfig
-//        } else {
-//            //assign default one
-//            mapConfig = new DefaultMapConfig();
-//        }
-        mapConfig = new DefaultMapConfig();
+
+        if (userLoggedIn) {
+            MapConfigHandler mapConfigHandler = factory.getMapConfigHandler();
+            mapConfig = mapConfigHandler.getMapConfig();
+        } else {
+            mapConfig = new DefaultMapConfig();
+        }
+
         return mapConfig;
+    }
+
+    public Key<MapConfig> putMapConfig(MapConfig mapConfig) {
+        Boolean userLoggedIn = false;
+        userLoggedIn = factory.getUserService().isUserLoggedIn();
+        Key<MapConfig> key = null;
+
+        if (userLoggedIn) {
+            if (mapConfig.getId() == factory.getUserService().getCurrentUser().getUserId()) {
+                MapConfigHandler mapConfigHandler = factory.getMapConfigHandler();
+                key = mapConfigHandler.putMapConfig(mapConfig);
+            } else {
+                Logger logger = Logger.getLogger("IllegalOperationAttemptLog");
+                logger.log(Level.WARNING, "User '" + factory.getUserService().getCurrentUser().getUserId() + "' tried to write" +
+                        " MapConfig object, that doesn't belong to him.");
+            }
+        }
+
+        return key;
     }
 }
