@@ -16,9 +16,12 @@
 
     <g:DockLayoutPanel addStyleNames="{style.fullSize}">
         <g:north size="30">
-            <g:FlowPanel addStyleNames="{style.northPanel}">
+            <!--<g:FlowPanel addStyleNames="{style.northPanel}">-->
 
-            </g:FlowPanel>
+            <!--</g:FlowPanel>-->
+            <g:MenuBar ui:field="menuBar">
+
+            </g:MenuBar>
         </g:north>
         <g:center>
             <g:HTMLPanel ui:field="map" addStyleNames="{style.fullSize}">
