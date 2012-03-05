@@ -7,8 +7,6 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
-import ge.lanmaster.onmap.root.client.event.center.MapLoadedEvent;
-import ge.lanmaster.onmap.root.client.event.center.MapLoadedEventHandler;
 import ge.lanmaster.onmap.root.client.event.general.ModuleLoadEvent;
 import ge.lanmaster.onmap.root.client.event.general.ModuleLoadEventHandler;
 import ge.lanmaster.onmap.root.client.event.general.UserStateRefreshSuccessEvent;
@@ -29,12 +27,6 @@ public class root implements EntryPoint {
     private final GinFactory injector = GWT.create(GinFactory.class);
 
     {
-        injector.getEventBus().addHandler(MapLoadedEvent.TYPE, new MapLoadedEventHandler() {
-            public void onMapLoaded(MapLoadedEvent event) {
-                //Window.alert("Map Loaded! Yippee!");
-            }
-        });
-
         injector.getEventBus().addHandler(ModuleLoadEvent.TYPE, new ModuleLoadEventHandler() {
             public void onModuleLoad(ModuleLoadEvent event) {
                 //Window.alert("onModuleLoad");

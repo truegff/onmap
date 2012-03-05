@@ -7,12 +7,12 @@ import javax.persistence.Id;
 
 public class MapConfig implements IsSerializable {
     @Id
-    private Long id;
+    private String id;
     private GeoPt point;
     private Integer zoom;
     private String mapType;
 
-    public MapConfig(Long id, GeoPt point, Integer zoom, String mapType) {
+    public MapConfig(String id, GeoPt point, Integer zoom, String mapType) {
         this.id = id;
         this.point = point;
         this.zoom = zoom;
@@ -22,11 +22,11 @@ public class MapConfig implements IsSerializable {
     public MapConfig() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
