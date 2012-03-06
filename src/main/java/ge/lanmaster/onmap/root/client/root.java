@@ -15,6 +15,7 @@ import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.UserStateManager;
 import ge.lanmaster.onmap.root.client.place.AppClientPlace;
 import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
+import ge.lanmaster.onmap.root.client.ui.Resources;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
@@ -25,6 +26,7 @@ import ge.lanmaster.onmap.root.client.place.AppGuestPlace;
 public class root implements EntryPoint {
 
     private final GinFactory injector = GWT.create(GinFactory.class);
+
 
     {
         injector.getEventBus().addHandler(ModuleLoadEvent.TYPE, new ModuleLoadEventHandler() {
@@ -45,6 +47,7 @@ public class root implements EntryPoint {
     Place appDefaultPlace = null;
 
     public void onModuleLoad() {
+        injector.getResources().style().ensureInjected();
         injector.getEventBus().fireEvent(new ModuleLoadEvent());
 
         UserStateManager usm = injector.getUserStateManager();

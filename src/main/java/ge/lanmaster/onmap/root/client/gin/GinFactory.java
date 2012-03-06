@@ -24,6 +24,7 @@ import ge.lanmaster.onmap.root.client.mvp.south.SouthActivityManager;
 import ge.lanmaster.onmap.root.client.mvp.south.SouthActivityMapper;
 import ge.lanmaster.onmap.root.client.mvp.west.WestActivityManager;
 import ge.lanmaster.onmap.root.client.mvp.west.WestActivityMapper;
+import ge.lanmaster.onmap.root.client.ui.Resources;
 import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterGuestView;
 import ge.lanmaster.onmap.root.client.ui.center.CenterLoadingView;
@@ -38,7 +39,7 @@ import ge.lanmaster.onmap.root.client.ui.south.SouthPanel;
 import ge.lanmaster.onmap.root.client.ui.west.WestGuestView;
 import ge.lanmaster.onmap.root.client.ui.west.WestPanel;
 
-@GinModules({GinClassBindingModule.class, GinFactoryBindingModule.class})
+@GinModules({GinClassBindingModule.class, GinFactoryBindingModule.class, GinStyleBindingModule.class})
 public interface GinFactory extends Ginjector {
 
     // generic
@@ -120,5 +121,8 @@ public interface GinFactory extends Ginjector {
     SouthActivityFactory getSouthActivityFactory();
 
     WestActivityFactory getWestActivityFactory();
+
+    // Resource (extends ClientBundle) bundles
+    Resources getResources();
 
 }

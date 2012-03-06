@@ -1,34 +1,19 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <ui:style>
-        .fullSize {
-            height: 100%;
-            width: 100%;
-        }
 
-        .inCenter {
+    <ui:with field="resources" type="ge.lanmaster.onmap.root.client.ui.Resources"></ui:with>
 
-            position: absolute;
-            vertical-align: middle;
-            top: 50%;
-            left: 50%;
-            width: 10%;
-            height: 100px;
-            background-color: #8a2be2;
-        }
-    </ui:style>
+    <g:SimplePanel addStyleNames="{resources.style.fullSize}">
 
-    <g:SimplePanel addStyleNames="{style.fullSize}">
-
-        <g:HTMLPanel addStyleNames="{style.fullSize}">
+        <g:HTMLPanel addStyleNames="{resources.style.fullSize}">
             <table style="height:100%; width:100%">
                 <tr>
                     <td align="right" width="50%">
                         <g:Label ui:field="loadingLabel">Loading...</g:Label>
                     </td>
                     <td align="left" width="50%">
-                        <image src="./images/ajax-loader.gif"></image>
+                        <g:Image resource="{resources.loading}"></g:Image>
                     </td>
                 </tr>
             </table>

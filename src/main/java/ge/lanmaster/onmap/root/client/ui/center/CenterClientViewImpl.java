@@ -6,6 +6,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import com.google.inject.Inject;
+import ge.lanmaster.onmap.root.client.ui.Resources;
 
 public class CenterClientViewImpl extends Composite implements CenterClientView {
 
@@ -19,13 +21,18 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
     private String name;
 
     @UiField
+    Resources resources;
+
+    @UiField
     MenuBar menuBar = new MenuBar();
 
     @UiField
     HTMLPanel map;
 
-    public CenterClientViewImpl() {
+    @Inject
+    public CenterClientViewImpl(Resources resources) {
         initWidget(uiBinder.createAndBindUi(this));
+        this.resources = resources;
 
         menuBar.addItem(new MenuItem("OLOLO", new Command() {
             public void execute() {
