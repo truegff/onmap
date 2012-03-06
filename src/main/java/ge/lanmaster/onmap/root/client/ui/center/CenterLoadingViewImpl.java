@@ -6,6 +6,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+import ge.lanmaster.onmap.root.client.ui.Resources;
 
 public class CenterLoadingViewImpl extends Composite implements CenterLoadingView {
 
@@ -19,11 +21,16 @@ public class CenterLoadingViewImpl extends Composite implements CenterLoadingVie
     private String name;
 
     @UiField
+    Resources resources;
+    
+    @UiField
     Label loadingLabel;
 
     //todo: introduce i18n
-    public CenterLoadingViewImpl() {
+    @Inject
+    public CenterLoadingViewImpl(Resources resources) {
         initWidget((Widget) uiBinder.createAndBindUi(this));
+        this.resources = resources;
     }
 
     public void setName(String name) {

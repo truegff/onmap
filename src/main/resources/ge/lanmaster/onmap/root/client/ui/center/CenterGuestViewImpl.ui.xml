@@ -1,45 +1,14 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <ui:style>
-        .fullSize {
-            height: 100%;
-            width: 100%;
-        }
 
-        .eastPanel {
-            background-color: #F60;
-        }
+    <ui:with field="resources" type="ge.lanmaster.onmap.root.client.ui.Resources" />
 
-        .westPanel {
-            background-color: #EEE;
-        }
-
-        .northPanel {
-            background-color: #39F;
-            border-color: blue;
-            border-width: 5px;
-        }
-
-        .southPanel {
-            background-color: #99C;
-        }
-
-        .centerPanel {
-            background-color: #FFC;
-        }
-    </ui:style>
-
-        <g:DockLayoutPanel addStyleNames="{style.fullSize}">
-            <g:north size="30">
-                <g:FlowPanel addStyleNames="{style.northPanel}">
-
-                </g:FlowPanel>
-            </g:north>
-            <g:center>
-                <g:HTMLPanel ui:field="map" addStyleNames="{style.fullSize}">
-                </g:HTMLPanel>
-            </g:center>
-        </g:DockLayoutPanel>
+    <g:DockLayoutPanel addStyleNames="{resources.style.fullSize}">
+        <g:center>
+            <g:HTMLPanel ui:field="map" addStyleNames="{resources.style.fullSize}">
+            </g:HTMLPanel>
+        </g:center>
+    </g:DockLayoutPanel>
 
 </ui:UiBinder>
