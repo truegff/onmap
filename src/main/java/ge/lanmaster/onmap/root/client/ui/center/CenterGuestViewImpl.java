@@ -28,8 +28,8 @@ public class CenterGuestViewImpl extends Composite implements CenterGuestView {
 
     @Inject
     public CenterGuestViewImpl(Resources resources) {
-        initWidget((Widget) uiBinder.createAndBindUi(this));
         this.resources = resources;
+        initWidget((Widget) uiBinder.createAndBindUi(this));
     }
 
     public void setName(String name) {

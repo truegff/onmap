@@ -27,44 +27,24 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
     MenuBar menuBar = new MenuBar();
 
     @UiField
+    MenuItem saveLocAsDefault;
+
+//    @UiField
+//    MenuBar menuBar2 = new MenuBar();
+
+    @UiField
     HTMLPanel map;
 
     @Inject
     public CenterClientViewImpl(Resources resources) {
-        initWidget(uiBinder.createAndBindUi(this));
         this.resources = resources;
+        initWidget(uiBinder.createAndBindUi(this));
 
-        menuBar.addItem(new MenuItem("OLOLO", new Command() {
+        saveLocAsDefault.setCommand(new Command() {
             public void execute() {
-                Window.alert("OLOLO");
+                Window.alert("Clicked!");
             }
-        }));
-
-        Command cmd = new Command() {
-            public void execute() {
-                Window.alert("You selected a menu item!");
-            }
-        };
-
-        MenuBar fooMenu = new MenuBar(true);
-        fooMenu.addItem("the", cmd);
-        fooMenu.addItem("foo", cmd);
-        fooMenu.addItem("menu", cmd);
-
-        MenuBar barMenu = new MenuBar(true);
-        barMenu.addItem("the", cmd);
-        barMenu.addItem("bar", cmd);
-        barMenu.addItem("menu", cmd);
-
-        MenuBar bazMenu = new MenuBar(true);
-        bazMenu.addItem("the", cmd);
-        bazMenu.addItem("baz", cmd);
-        bazMenu.addItem("menu", cmd);
-
-        // Make a new menu bar, adding a few cascading menus to it.
-        menuBar.addItem("foo", fooMenu);
-        menuBar.addItem("bar", barMenu);
-        menuBar.addItem("baz", bazMenu);
+        });
     }
 
     public void setName(String name) {

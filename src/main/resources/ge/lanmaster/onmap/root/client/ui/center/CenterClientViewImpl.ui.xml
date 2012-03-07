@@ -5,8 +5,14 @@
     <ui:with field="resources" type="ge.lanmaster.onmap.root.client.ui.Resources"></ui:with>
 
     <g:DockLayoutPanel addStyleNames="{resources.style.fullSize}">
-        <g:north size="30">
+        <g:north size="24">
             <g:MenuBar ui:field="menuBar">
+                <g:MenuItem width="100%" enabled="false"></g:MenuItem>
+                <g:MenuItem text="Preferences">
+                    <g:MenuBar vertical="true" addStyleNames="{resources.style.dropDownMenu}">
+                        <g:MenuItem ui:field="saveLocAsDefault" text="Save current location as default."></g:MenuItem>
+                    </g:MenuBar>
+                </g:MenuItem>
             </g:MenuBar>
         </g:north>
         <g:center>

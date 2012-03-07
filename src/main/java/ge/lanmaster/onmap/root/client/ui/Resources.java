@@ -7,7 +7,7 @@ import com.google.gwt.resources.client.ImageResource;
  * Resources used by the entire application.
  */
 public interface Resources extends ClientBundle {
-    @Source("css/gwt-main.css")
+    @Source("css/main.css")
     Style style();
 
     @Source("img/loading.gif")
