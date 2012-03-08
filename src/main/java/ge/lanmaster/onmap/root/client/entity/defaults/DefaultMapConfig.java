@@ -14,6 +14,6 @@ public class DefaultMapConfig extends MapConfig {
     }
 
     public DefaultMapConfig() {
-        this("default", tbilisi, 13, "hybrid");
+        this("default", tbilisi, 13, "Hybrid");
     }
 }

@@ -8,9 +8,9 @@
         <g:north size="24">
             <g:MenuBar ui:field="menuBar">
                 <g:MenuItem width="100%" enabled="false"></g:MenuItem>
-                <g:MenuItem text="Preferences">
+                <g:MenuItem ui:field="preferences">
                     <g:MenuBar vertical="true" addStyleNames="{resources.style.dropDownMenu}">
-                        <g:MenuItem ui:field="saveLocAsDefault" text="Save current location as default."></g:MenuItem>
+                        <g:MenuItem ui:field="saveCurrentMapConfig"></g:MenuItem>
                     </g:MenuBar>
                 </g:MenuItem>
             </g:MenuBar>

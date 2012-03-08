@@ -42,12 +42,12 @@ public class DataTransferServiceImpl extends RemoteServiceServlet implements Dat
         Key<MapConfig> key = null;
 
         if (userLoggedIn) {
-            if (mapConfig.getId() == factory.getUserService().getCurrentUser().getUserId()) {
+            if (mapConfig.getId().equalsIgnoreCase(factory.getUserService().getCurrentUser().getEmail())) {
                 MapConfigHandler mapConfigHandler = factory.getMapConfigHandler();
                 key = mapConfigHandler.putMapConfig(mapConfig);
             } else {
                 Logger logger = Logger.getLogger("IllegalOperationAttemptLog");
-                logger.log(Level.WARNING, "User '" + factory.getUserService().getCurrentUser().getUserId() + "' tried to write" +
+                logger.log(Level.WARNING, "User '" + factory.getUserService().getCurrentUser().getEmail() + "' tried to write" +
                         " MapConfig object, that doesn't belong to him.");
             }
         }

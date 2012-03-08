@@ -4,14 +4,16 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
+import ge.lanmaster.onmap.root.client.event.center.menubar.SaveCurrentMapConfigEvent;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.ui.Resources;
 
 public class CenterClientViewImpl extends Composite implements CenterClientView {
 
     private static CenterClientViewImplUiBinder uiBinder = GWT.create(CenterClientViewImplUiBinder.class);
+    private GinFactory injector;
 
 
     interface CenterClientViewImplUiBinder extends UiBinder<Widget, CenterClientViewImpl> {
@@ -27,7 +29,11 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
     MenuBar menuBar = new MenuBar();
 
     @UiField
-    MenuItem saveLocAsDefault;
+    MenuItem saveCurrentMapConfig;
+
+    @UiField
+    MenuItem preferences;
+
 
 //    @UiField
 //    MenuBar menuBar2 = new MenuBar();
@@ -36,15 +42,19 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
     HTMLPanel map;
 
     @Inject
-    public CenterClientViewImpl(Resources resources) {
+    public CenterClientViewImpl(Resources resources, final GinFactory injector) {
         this.resources = resources;
+        this.injector = injector;
         initWidget(uiBinder.createAndBindUi(this));
 
-        saveLocAsDefault.setCommand(new Command() {
+        preferences.setText("Preferences");
+        saveCurrentMapConfig.setText("Save current location as default.");
+        saveCurrentMapConfig.setCommand(new Command() {
             public void execute() {
-                Window.alert("Clicked!");
+                injector.getEventBus().fireEvent(new SaveCurrentMapConfigEvent());
             }
         });
+
     }
 
     public void setName(String name) {

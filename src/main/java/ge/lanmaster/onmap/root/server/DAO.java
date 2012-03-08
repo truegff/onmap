@@ -4,7 +4,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
-import ge.lanmaster.onmap.root.client.entity.Car;
+import ge.lanmaster.onmap.root.client.entity.MapConfig;
 import ge.lanmaster.onmap.root.client.entity.Visit;
 
 /**
@@ -20,7 +20,8 @@ public class DAO<T> extends DAOBase {
 
     static {
         ObjectifyService.register(Visit.class);
-        ObjectifyService.register(Car.class);
+        //ObjectifyService.register(Car.class);
+        ObjectifyService.register(MapConfig.class);
     }
 
     public DAO(Class<T> clazz) {
@@ -64,6 +65,7 @@ public class DAO<T> extends DAOBase {
 
     public Key<T> put(T thing) {
         Objectify ofy = ObjectifyService.begin();
+
         Key<T> key = ofy.put(thing);
         return key;
     }
