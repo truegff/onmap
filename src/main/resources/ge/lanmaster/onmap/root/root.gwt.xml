@@ -15,13 +15,11 @@
     <!--<inherits name='com.google.gwt.user.theme.dark.Dark'/>-->
 
     <!-- Other module inherits                                      -->
-    <!--<inherits name="com.extjs.gxt.ui.GXT"/>-->
     <inherits name="com.google.gwt.place.Place"/>
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.google.gwt.maps.GoogleMaps"/>
     <inherits name="com.googlecode.objectify.Objectify"/>
     <inherits name="com.google.gwt.inject.Inject"/>
-    <!--<inherits name="ge.lanmaster.onmap.demo1.Demo1" />-->
 
     <set-property name="user.agent" value="safari"/>
     <extend-property values="gecko1_8" name="user.agent"/>
@@ -32,7 +30,6 @@
     <!-- Specify the paths for translatable code                    -->
     <source path='client'/>
     <source path='shared'/>
-
 
     <servlet path="/login" class="ge.lanmaster.onmap.root.server.service.LoginServiceImpl"/>
 

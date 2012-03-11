@@ -14,4 +14,6 @@ public interface Style extends CssResource {
     String centerPanel();
 
     String westPanel();
+
+    String dropDownMenu();
 }

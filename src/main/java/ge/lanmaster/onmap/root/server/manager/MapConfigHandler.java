@@ -23,7 +23,7 @@ public class MapConfigHandler {
         MapConfig config;
 //        try {
         dao = new DAO<MapConfig>(MapConfig.class);
-        config = dao.getOrCreate(factory.getUserService().getCurrentUser().getUserId());
+        config = dao.getOrCreate(factory.getUserService().getCurrentUser().getEmail());
         if (config.getId() == null) {
             config = new DefaultMapConfig();
             config.setId(factory.getUserService().getCurrentUser().getUserId());
@@ -37,11 +37,10 @@ public class MapConfigHandler {
     }
 
     public Key<MapConfig> putMapConfig(MapConfig mapConfig) {
-
         DAO<MapConfig> dao;
         dao = new DAO<MapConfig>(MapConfig.class);
-        Key<MapConfig> key = dao.put(mapConfig);
-
+        Key<MapConfig> key;
+        key = dao.put(mapConfig);
         return key;
     }
 }

@@ -1,7 +1,9 @@
 package ge.lanmaster.onmap.root.client.manager;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.objectify.Key;
 import ge.lanmaster.onmap.root.client.entity.MapConfig;
 import ge.lanmaster.onmap.root.client.event.center.IMapConfigReadyMarker;
 import ge.lanmaster.onmap.root.client.event.center.MapReadyEvent;
@@ -46,5 +48,20 @@ public class MapConfigManager {
 
     public void setMapConfig(MapConfig mapConfig) {
         this.mapConfig = mapConfig;
+    }
+
+    public void storeMapConfig() {
+        dataTransferService.putMapConfig(
+                mapConfig,
+                new AsyncCallback<Key<MapConfig>>() {
+                    public void onFailure(Throwable throwable) {
+                        Window.alert("MapConfig store failure.");
+                    }
+
+                    public void onSuccess(Key<MapConfig> mapConfigKey) {
+                        Window.alert("MapConfig store success.");
+                    }
+                }
+        );
     }
 }

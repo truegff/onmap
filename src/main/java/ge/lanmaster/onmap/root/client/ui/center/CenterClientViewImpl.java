@@ -1,17 +1,23 @@
 package ge.lanmaster.onmap.root.client.ui.center;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
+import ge.lanmaster.onmap.root.client.event.center.menubar.AddMarkerEvent;
+import ge.lanmaster.onmap.root.client.event.center.menubar.RestoreDefaultMapConfigEvent;
+import ge.lanmaster.onmap.root.client.event.center.menubar.SaveCurrentMapConfigEvent;
+import ge.lanmaster.onmap.root.client.gin.GinFactory;
+import ge.lanmaster.onmap.root.client.manager.MapWidgetManager;
 import ge.lanmaster.onmap.root.client.ui.Resources;
 
 public class CenterClientViewImpl extends Composite implements CenterClientView {
 
     private static CenterClientViewImplUiBinder uiBinder = GWT.create(CenterClientViewImplUiBinder.class);
+    private GinFactory injector;
 
 
     interface CenterClientViewImplUiBinder extends UiBinder<Widget, CenterClientViewImpl> {
@@ -27,44 +33,54 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
     MenuBar menuBar = new MenuBar();
 
     @UiField
+    MenuItem addMarker;
+
+    @UiField
+    MenuItem restoreDefaultMapConfig;
+
+    @UiField
+    MenuItem saveCurrentMapConfig;
+
+    @UiField
+    MenuItem preferences;
+
+
+//    @UiField
+//    MenuBar menuBar2 = new MenuBar();
+
+    @UiField
     HTMLPanel map;
 
     @Inject
-    public CenterClientViewImpl(Resources resources) {
-        initWidget(uiBinder.createAndBindUi(this));
+    public CenterClientViewImpl(Resources resources, final GinFactory injector) {
         this.resources = resources;
+        this.injector = injector;
+        initWidget(uiBinder.createAndBindUi(this));
 
-        menuBar.addItem(new MenuItem("OLOLO", new Command() {
+        preferences.setText("Preferences");
+
+        addMarker.setText("Add");
+        addMarker.setCommand(new Command() {
             public void execute() {
-                Window.alert("OLOLO");
+                LatLng position = MapWidgetManager.getMapWidget().getCenter();
+                injector.getEventBus().fireEvent(new AddMarkerEvent(position));
             }
-        }));
+        });
 
-        Command cmd = new Command() {
+        restoreDefaultMapConfig.setText("Go to default location.");
+        restoreDefaultMapConfig.setCommand(new Command() {
             public void execute() {
-                Window.alert("You selected a menu item!");
+                injector.getEventBus().fireEvent(new RestoreDefaultMapConfigEvent());
             }
-        };
+        });
 
-        MenuBar fooMenu = new MenuBar(true);
-        fooMenu.addItem("the", cmd);
-        fooMenu.addItem("foo", cmd);
-        fooMenu.addItem("menu", cmd);
+        saveCurrentMapConfig.setText("Save current location as default.");
+        saveCurrentMapConfig.setCommand(new Command() {
+            public void execute() {
+                injector.getEventBus().fireEvent(new SaveCurrentMapConfigEvent());
+            }
+        });
 
-        MenuBar barMenu = new MenuBar(true);
-        barMenu.addItem("the", cmd);
-        barMenu.addItem("bar", cmd);
-        barMenu.addItem("menu", cmd);
-
-        MenuBar bazMenu = new MenuBar(true);
-        bazMenu.addItem("the", cmd);
-        bazMenu.addItem("baz", cmd);
-        bazMenu.addItem("menu", cmd);
-
-        // Make a new menu bar, adding a few cascading menus to it.
-        menuBar.addItem("foo", fooMenu);
-        menuBar.addItem("bar", barMenu);
-        menuBar.addItem("baz", bazMenu);
     }
 
     public void setName(String name) {
