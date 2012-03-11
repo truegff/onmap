@@ -5,8 +5,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.maps.client.MapType;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.geom.LatLng;
+import com.google.gwt.maps.client.overlay.Marker;
+import com.google.gwt.maps.client.overlay.MarkerOptions;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -15,8 +16,7 @@ import ge.lanmaster.onmap.root.client.activity.MyAbstractActivity;
 import ge.lanmaster.onmap.root.client.entity.MapConfig;
 import ge.lanmaster.onmap.root.client.event.center.IMapReadyEventHandler;
 import ge.lanmaster.onmap.root.client.event.center.MapReadyEvent;
-import ge.lanmaster.onmap.root.client.event.center.menubar.SaveCurrentMapConfigEvent;
-import ge.lanmaster.onmap.root.client.event.center.menubar.SaveCurrentMapConfigEventHandler;
+import ge.lanmaster.onmap.root.client.event.center.menubar.*;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
 import ge.lanmaster.onmap.root.client.manager.MapWidgetManager;
 import ge.lanmaster.onmap.root.client.ui.center.CenterClientView;
@@ -73,7 +73,7 @@ public class CenterClientActivity extends MyAbstractActivity implements CenterCl
 
         eventBus.addHandler(SaveCurrentMapConfigEvent.TYPE, new SaveCurrentMapConfigEventHandler() {
             public void onSaveCurrentMapConfig(SaveCurrentMapConfigEvent event) {
-                Window.alert("Event received. Proceeding...");
+                //Window.alert("Event received. Proceeding...");
 
                 MapWidget mw = MapWidgetManager.getMapWidget();
                 String id = injector.getUserStateManager().getUserState().getEmailAddress();
@@ -87,6 +87,36 @@ public class CenterClientActivity extends MyAbstractActivity implements CenterCl
             }
         });
 
+        eventBus.addHandler(RestoreDefaultMapConfigEvent.TYPE, new RestoreDefaultMapConfigEventHandler() {
+            public void onRestoreDefaultMapConfig(RestoreDefaultMapConfigEvent event) {
+                MapWidget mw = MapWidgetManager.getMapWidget();
+                MapConfig mc = injector.getMapConfigManager().getMapConfig();
+
+                LatLng ll = LatLng.newInstance(mc.getPoint().getLatitude(), mc.getPoint().getLongitude());
+
+                MapType mapType = null;
+                //todo: use MapType factory here. (* create it first)
+                if (mc.getMapType().equalsIgnoreCase("Hybrid")) mapType = MapType.getHybridMap();
+
+                mw.setCenter(ll, mc.getZoom(), mapType);
+            }
+        });
+
+        eventBus.addHandler(AddMarkerEvent.TYPE, new AddMarkerEventHandler() {
+            public void onAddMarker(AddMarkerEvent event) {
+                GWT.log("AddMarker event on position: " + event.getPosition().toString());
+
+                MarkerOptions markerOptions = MarkerOptions.newInstance();
+                markerOptions.setDraggable(true);
+                Marker marker = new Marker(event.getPosition(), markerOptions);
+                //marker.setDraggingEnabled(true);
+
+                //GWT.log(new Boolean(marker.isDraggable()).toString());
+                //GWT.log(String.valueOf(marker.isDraggingEnabled()));
+
+                MapWidgetManager.getMapWidget().addOverlay(marker);
+            }
+        });
 
         injector.getMapConfigManager().retrieveMapConfig();
         injector.getMapPreloadManager().doPreload();

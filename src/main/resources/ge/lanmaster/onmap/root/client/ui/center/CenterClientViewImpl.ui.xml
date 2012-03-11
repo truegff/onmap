@@ -7,9 +7,11 @@
     <g:DockLayoutPanel addStyleNames="{resources.style.fullSize}">
         <g:north size="24">
             <g:MenuBar ui:field="menuBar">
+                <g:MenuItem ui:field="addMarker"></g:MenuItem>
                 <g:MenuItem width="100%" enabled="false"></g:MenuItem>
                 <g:MenuItem ui:field="preferences">
                     <g:MenuBar vertical="true" addStyleNames="{resources.style.dropDownMenu}">
+                        <g:MenuItem ui:field="restoreDefaultMapConfig"></g:MenuItem>
                         <g:MenuItem ui:field="saveCurrentMapConfig"></g:MenuItem>
                     </g:MenuBar>
                 </g:MenuItem>

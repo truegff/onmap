@@ -1,13 +1,17 @@
 package ge.lanmaster.onmap.root.client.ui.center;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
+import ge.lanmaster.onmap.root.client.event.center.menubar.AddMarkerEvent;
+import ge.lanmaster.onmap.root.client.event.center.menubar.RestoreDefaultMapConfigEvent;
 import ge.lanmaster.onmap.root.client.event.center.menubar.SaveCurrentMapConfigEvent;
 import ge.lanmaster.onmap.root.client.gin.GinFactory;
+import ge.lanmaster.onmap.root.client.manager.MapWidgetManager;
 import ge.lanmaster.onmap.root.client.ui.Resources;
 
 public class CenterClientViewImpl extends Composite implements CenterClientView {
@@ -29,6 +33,12 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
     MenuBar menuBar = new MenuBar();
 
     @UiField
+    MenuItem addMarker;
+
+    @UiField
+    MenuItem restoreDefaultMapConfig;
+
+    @UiField
     MenuItem saveCurrentMapConfig;
 
     @UiField
@@ -48,6 +58,22 @@ public class CenterClientViewImpl extends Composite implements CenterClientView 
         initWidget(uiBinder.createAndBindUi(this));
 
         preferences.setText("Preferences");
+
+        addMarker.setText("Add");
+        addMarker.setCommand(new Command() {
+            public void execute() {
+                LatLng position = MapWidgetManager.getMapWidget().getCenter();
+                injector.getEventBus().fireEvent(new AddMarkerEvent(position));
+            }
+        });
+
+        restoreDefaultMapConfig.setText("Go to default location.");
+        restoreDefaultMapConfig.setCommand(new Command() {
+            public void execute() {
+                injector.getEventBus().fireEvent(new RestoreDefaultMapConfigEvent());
+            }
+        });
+
         saveCurrentMapConfig.setText("Save current location as default.");
         saveCurrentMapConfig.setCommand(new Command() {
             public void execute() {
